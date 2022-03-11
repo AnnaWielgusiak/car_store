@@ -70,3 +70,15 @@ body {
     z-index: 1;
     font-size: 16px;
 }
+
+#carousel {
+    width: 100%;
+    position: absolute;
+    top: 10%;
+    z-index: 1;
+}
+
+.img-fluid {
+    height: 15vh;
+    width: auto;
+}
