@@ -1,50 +1,47 @@
 body {
     margin: 0px;
     padding: 0px;
+    font-family: 'Lato', sans-serif;
 }
 
+/* Navbar */
 .navbar {
   background-color: #707171;
-  height: 72px;
+  height: 6vh;
   font-size: 16px;
   letter-spacing: 2px;
 }
 
-.navbar-expand-lg {
-    text-align: center;
+.navbar li a {
+    display: block;
+    
 }
 
 .logo {
-    height: 64px;
+    height: 7vh;
     width: auto;
+    margin-left: 50px;
 }
-
-.nav-item {
-    color: #4c3b2b;
-}
-
-.active {
-    color: #1c1413;
-}
-
+ 
 .icon {
-    height: 36px;
+    height: 4vh;
     width: auto;
 }
 
 .nav-right {
     text-align: right;
+    margin-right: 50px;
 }
 
-.btn-outline-success {
+.btn-outline {
     border: none;
 }
 
-.btn-outline-success:visited, .btn-outline-success:hover, .btn-outline-success:active {
+.btn-outline:visited, .btn-outline:hover, .btn-outline:active {
     background-color: #464d55;
-    border-color: #464d55;
 }
 
+/* Video */
 .fullscreenVideo {
     height: 100vh;
     width: 100%;
@@ -62,23 +59,93 @@ body {
     width: 100vw;
 }
 
+/* Signification */
 .caption {
     position: absolute;
     bottom: 1%;
-    color: white;
+    color: rgba(255, 255, 255, .55);
     text-align: center;
     z-index: 1;
     font-size: 16px;
 }
 
-#carousel {
-    width: 100%;
+/* Search form */
+.container-for-search-form {
     position: absolute;
-    top: 10%;
-    z-index: 1;
+    width: 80vw;
+    bottom: 30%;
+    text-align: center;
+    margin: 0 10vw;
+    color: rgba(255, 255, 255, .55);
+    font-style: bold;
 }
 
-.img-fluid {
-    height: 15vh;
-    width: auto;
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    background-color:#32393e;
+    color: rgba(255, 255, 255, .55);
+    border-bottom: none;
+    border-color: rgba(255, 255, 255, .55);
+}
+
+.nav-link.active {
+    background-color:#32393e;
+    color: rgba(255, 255, 255, .55);
+    border-color: rgba(255, 255, 255, .55);
+}
+
+.tab-content {
+    background-color: #32393e;
+    padding: 1vh 0;
+    border-left: solid 1px;
+    border-right: solid 1px;
+    border-bottom: solid 1px;
+    padding: 1vh 0;
+    border-radius: 0 0 5px 5px;
+
+}
+
+label {
+    font-size: 2vh;
+}
+
+.brands {
+    margin: 5px 20px 5px 5px;
+    background-color: white;
+    height: 4vh;
+    text-align: left;
+}
+  
+#model {
+    margin: 5px 20px 5px 5px;
+    background-color: white;
+    text-align: left;
+    cursor: auto;
+    height: 4vh;
+}
+
+.datefield-year {
+    margin: 2px 20px 2px 5px;
+    padding: 0;
+    background-color: white;
+    text-align: right;
+    height: 4vh;
+}
+
+.price {
+    margin: 5px 20px 5px 5px;
+    background-color: white;
+    text-align: right;
+    height: 4vh;
+    padding: 0;
+}
+
+.search-submit {
+    background-color:#32393e;
+    color: rgba(255, 255, 255, .55);
+    border-color: rgba(255, 255, 255, .55);
+    
+} 
+
+.search-submit:hover {
+    color: white;
 }

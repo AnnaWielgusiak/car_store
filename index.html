@@ -1,194 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kup auto</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap"
+      rel="stylesheet"
+    />
 
     <link rel="stylesheet" href="style/style.css" />
-    <link rel="stylesheet" href="style/carousel.css"/>
-</head>
-<body>
+    <link rel="stylesheet" href="style/carousel.css" />
+  </head>
+  <body>
+    <!-- navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <a href="#home_page">
+        <img class="logo" src="assets/logo.png" alt="LOGO" />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarToggler"
+        aria-controls="navbarToggler"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarToggler">
+        <ul class="navbar-nav mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="#home_page">Kup auto</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Formularz</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Podsumowanie</a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <ul class="navbar-nav mt-2 mt-lg-0 nav-right">
+          <li>
+            <a class="btn btn-outline my-2 my-sm-0" href="#">
+              <img class="icon" src="assets/pointer.png" alt="Lokalizacja" />
+            </a>
+          </li>
+          <li>
+            <a class="btn btn-outline my-2 my-sm-0" href="#">
+              <img class="icon" src="assets/telephon.png" alt="Kontakt" />
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- End navigation -->
     <!-- Start HOME -->
-        <div id="home">
-            <!-- navigation/serch/localisation/contact-->
-            <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-                <a class="navbar-brand" href="#">
-                    <img class="logo" src="assets/logo.png" alt="LOGO">
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>              
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                  <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav-item active">
-                      <a class="nav-link" href="#">Kup auto <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Formularz</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Podsumowanie</a>
-                    </li>
-                  </ul>
-                    <form class="form-inline navbar-nav my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Szukaj modelu...">                    
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                            <img class="icon" src="assets/loop.png" alt="Wyszukaj">
-                        </button>
-                    </form>
-                        <ul class="navbar-nav mt-2 mt-lg-0">
-                            <li>
-                                <a class="btn btn-outline-success my-2 my-sm-0" href="#">
-                                    <img class="icon" src="assets/pointer.png" alt="Lokalizacja">
-                                </a>
-                            </li>
-                            <li>
-                                <a class="btn btn-outline-success my-2 my-sm-0" href="#">
-                                    <img class="icon" src="assets/telephon.png" alt="Kontakt">
-                                </a>
-                            </li>
-                        </ul>
-                </div>
-              </nav>
+    <div id="home_page">
+      <!--Main screen-->
+      <main class="main-screen">
+        <video
+          class="fullscreenVideo"
+          src="assets/pexels-yaroslav-shuraev-5418124.mp4"
+          autoplay
+          loop
+          muted
+        ></video>
+      </main>
 
-            <!--Main screen-->
-            <main class="main-screen">
-                <video class="fullscreenVideo" src="assets/pexels-yaroslav-shuraev-5418124.mp4" autoplay loop muted> </video>
-            </main>
-
-            <!-- Footer -->
-            <div class="text-footer caption">
-                <p>© Copyright by Anna Wielgusiak</p>
-            </div>
-
-        </div>       
+      <!-- Footer -->
+      <div class="text-footer caption">
+        <p>© Copyright by Anna Wielgusiak</p>
+      </div>
+    </div>
     <!-- End HOME -->
-    
     <!-- Start Carousel BRANDS  -->
-        <div id="carousel">
-        <div class="container-fluid">
-            <div id="carouselExample" class="carousel slide" data-ride="carousel" data-interval="3000">
-                <div class="carousel-inner row w-100 mx-auto" role="listbox">
-                    <div class="carousel-item col-md-3  active">
-                    <div class="panel panel-default">
-                        <div class="panel-thumbnail">
-                            <a href="#" title="Audi" class="thumb">
-                            <img class="img-fluid mx-auto d-block" src="assets/brands/1920px-Audi_logo_detail.svg.png" alt="Audi">
-                            </a>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item col-md-3 ">
-                    <div class="panel panel-default">
-                        <div class="panel-thumbnail">
-                            <a href="#" title="Mercedes" class="thumb">
-                            <img class="img-fluid mx-auto d-block" src="assets/brands/Mercedes-Benz_Star.svg" alt="Mercedes">
-                            </a>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item col-md-3 ">
-                    <div class="panel panel-default">
-                        <div class="panel-thumbnail">
-                            <a href="#" title="BMW" class="thumb">
-                            <img class="img-fluid mx-auto d-block" src="assets/brands/BMW.svg" alt="BMW">
-                            </a>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item col-md-3 ">
-                        <div class="panel panel-default">
-                        <div class="panel-thumbnail">
-                            <a href="#" title="Fiat" class="thumb">
-                            <img class="img-fluid mx-auto d-block" src="assets/brands/fiat-logo-vector-01.png" alt="Fiat">
-                            </a>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item col-md-3 ">
-                    <div class="panel panel-default">
-                        <div class="panel-thumbnail">
-                            <a href="#" title="Ford" class="thumb">
-                            <img class="img-fluid mx-auto d-block" src="assets/brands/Ford_Motor_Company_Logo.svg" alt="Ford">
-                            </a>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item col-md-3 ">
-                    <div class="panel panel-default">
-                        <div class="panel-thumbnail">
-                            <a href="#" title="Opel" class="thumb">
-                            <img class="img-fluid mx-auto d-block" src="assets/brands/Opel-Logo_2017.svg" alt="Opel">
-                            </a>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item col-md-3 ">
-                    <div class="panel panel-default">
-                        <div class="panel-thumbnail">
-                            <a href="#" title="Renault" class="thumb">
-                            <img class="img-fluid mx-auto d-block" src="assets/brands/Renault_2009_logo.svg" alt="Renault">
-                            </a>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item col-md-3  ">
-                        <div class="panel panel-default">
-                        <div class="panel-thumbnail">
-                            <a href="#" title="Toyota" class="thumb">
-                            <img class="img-fluid mx-auto d-block" src="assets/brands/Toyota_EU.svg" alt="Toyota">
-                            </a>
-                        </div>                     
-                        </div>
-                    </div>
-                    <div class="carousel-item col-md-3  ">
-                        <div class="panel panel-default">
-                        <div class="panel-thumbnail">
-                            <a href="#" title="Volkswagen" class="thumb">
-                            <img class="img-fluid mx-auto d-block" src="assets/brands/Volkswagen_logo_2019.svg" alt="Volkswagen">
-                            </a>
-                        </div>                     
-                        </div>
-                    </div>
-                    <div class="carousel-item col-md-3  ">
-                        <div class="panel panel-default">
-                        <div class="panel-thumbnail">
-                            <a href="#" title="Skoda" class="thumb">
-                            <img class="img-fluid mx-auto d-block" src="assets/brands/Skoda-01.svg" alt="Skoda">
-                            </a>
-                        </div>                     
-                        </div>
-                    </div>                               -->
-                </div>
-                <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next text-faded" href="#carouselExample" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-        </div>
-        </div>
+    <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <a href="#" class="carousel-item active" data-bs-interval="2000">
+          <img
+            src="/assets/brands/1920px-Audi_logo_detail.svg.png"
+            class="w-25 brand-image"
+            alt="Audi"
+          />
+        </a>
+        <a href="#" class="carousel-item">
+          <img
+            src="/assets/brands/BMW.png"
+            class="d-block w-25 brand-image"
+            alt="BMW"
+          />
+        </a>
+        <a href="#" class="carousel-item">
+          <img
+            src="/assets/brands/fiat-logo-vector-01.png"
+            class="w-25 brand-image"
+            alt="Fiat"
+          />
+        </a>
+        <a href="#" class="carousel-item">
+          <img
+            src="/assets/brands/Ford_Motor_Company_Logo.png"
+            class="w-25 brand-image"
+            alt="Ford"
+          />
+        </a>
+        <a href="#" class="carousel-item">
+          <img
+            src="/assets/brands/Mercedes-Benz_Star.png"
+            class="w-25 brand-image"
+            alt="Mercedes"
+          />
+        </a>
+        <a href="#" class="carousel-item">
+          <img
+            src="/assets/brands/Opel-Logo_2017.png"
+            class="w-25 brand-image"
+            alt="Opel"
+          />
+        </a>
+        <a href="#" class="carousel-item">
+          <img
+            src="/assets/brands/Skoda-01.png"
+            class="w-25 brand-image"
+            alt="Skoda"
+          />
+        </a>
+        <a href="#" class="carousel-item">
+          <img
+            src="/assets/brands/Toyota_EU.png"
+            class="w-25 brand-image"
+            alt="Toyota"
+          />
+        </a>
+        <a href="#" class="carousel-item">
+          <img
+            src="/assets/brands/Volkswagen_logo_2019.png"
+            class="w-25 brand-image"
+            alt="Volkswagen"
+          />
+        </a>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carousel"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carousel"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
     <!-- End Carousel BRANDS  -->
-
     <!-- Start Search -->
-    <div>
+    <div class="container-for-search-form" id="search-field">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <div
+            class="nav-link active"
+            id="home-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#home"
+            role="tab"
+            aria-controls="home"
+            aria-selected="true"
+          >
+            Wyszukaj
+          </div>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div
+          class="tab-pane fade show active"
+          id="home"
+          role="tabpanel"
+          aria-labelledby="home-tab"
+        >
+          <form>
+            <label for="brands">Marka:</label>
+            <select class="btn brands" name="brands">
+              <option value=""></option>
+              <option value="Audi">Audi</option>
+              <option value="BMW">BMW</option>
+              <option value="Fiat">Fiat</option>
+              <option value="Ford">Ford</option>
+              <option value="Mercedes">Mercedes</option>
+              <option value="Opel">Opel</option>
+              <option value="Renault">Renault</option>
+              <option value="Skoda">Skoda</option>
+              <option value="Toyota">Toyota</option>
+              <option value="Volkswagen">Volkswagen</option>
+            </select>
 
+            <label for="model">Model:</label>
+            <input type="text" class="btn" id="model" name="model" />
+
+            <label for="datefield-year">Rok od:</label>
+            <select name="dob-year" class="btn datefield-year">
+              <option value="2022">2022</option>
+              <option value="2021">2021</option>
+              <option value="2020">2020</option>
+              <option value="2019">2019</option>
+              <option value="2018">2018</option>
+              <option value="2017">2017</option>
+              <option value="2016">2016</option>
+              <option value="2015">2015</option>
+              <option value="2014">2014</option>
+              <option value="2013">2013</option>
+              <option value="2012">2012</option>
+              <option value="2011">2011</option>
+              <option value="2010">2010</option>
+              <option value="2009">2009</option>
+              <option value="2008">2008</option>
+              <option value="2007">2007</option>
+              <option value="2006">2006</option>
+              <option value="2005">2005</option>
+              <option value="2004">2004</option>
+              <option value="2003">2003</option>
+              <option value="2002">2002</option>
+              <option value="2001">2001</option>
+              <option value="2000">2000</option>
+              <option value="<1999">1999</option>
+            </select>
+
+            <label for="price">Cena od:</label>
+            <select class="btn price" name="price">
+              <option value="5000">5000</option>
+              <option value="10000">10000</option>
+              <option value="15000">15000</option>
+              <option value="20000">20000</option>
+              <option value="25000">25000</option>
+              <option value="30000">30000</option>
+              <option value="35000">35000</option>
+              <option value="40000">40000</option>
+              <option value="45000">45000</option>
+              <option value="50000">50000</option>
+              <option value="55000">55000</option>
+              <option value="60000">60000</option>
+              <option value="65000">65000</option>
+              <option value="70000">70000</option>
+              <option value=">70000">bez limitu</option>
+            </select>
+            <input
+              class="btn search-submit active"
+              type="submit"
+              value="Szukaj"
+            />
+          </form>
+        </div>
+      </div>
     </div>
     <!-- End Search -->
 
+    <!-- Start Car List -->
+    <div id="car-list">
+      <section class="car-item">
+        aaa
+      </section>
+      <aside class="car-image">
+        ggg
+      </aside>
+    </div>
+    <!-- End Car List -->
 
-<script src="js/carousel.js"></script>
-</body>
+    <script src="js/carousel.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

@@ -1,36 +1,15 @@
-$('#carouselExample').on('slide.bs.carousel', function (e) {
-    let $e = $(e.relatedTarget);
-    let idx = $e.index();
-    let itemsPerSlide = 4;
-    let totalItems = $('.carousel-item').length;
-    
-    if (idx >= totalItems-(itemsPerSlide-1)) {
-        let it = itemsPerSlide - (totalItems - idx);
-        for (let i=0; i<it; i++) {
-            // append slides to end
-            if (e.direction=="left") {
-                $('.carousel-item').eq(i).appendTo('.carousel-inner');
-            }
-            else {
-                $('.carousel-item').eq(0).appendTo('.carousel-inner');
-            }
-        }
+let items = document.querySelectorAll('.carousel .carousel-item')
+
+items.forEach((el) => {
+    const minPerSlide = 3
+    let next = el.nextElementSibling
+    for (var i=1; i<minPerSlide; i++) {
+        if (!next) {
+            // wrap carousel by using first child
+        	next = items[0]
+      	}
+        let cloneChild = next.cloneNode(true)
+        el.appendChild(cloneChild.children[0])
+        next = next.nextElementSibling
     }
-});
-
-  $('#carouselExample').carousel({ 
-                interval: 2000
-        });
-
-  $(document).ready(function() {
-/* show lightbox when clicking a thumbnail */
-    $('a.thumb').click(function(event){
-      event.preventDefault();
-      var content = $('.modal-body');
-      content.empty();
-        var title = $(this).attr("title");
-        $('.modal-title').html(title);        
-        content.html($(this).html());
-        $(".modal-profile").modal({show:true});
-    });
-  });
+})
