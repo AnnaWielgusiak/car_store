@@ -17,6 +17,9 @@
       rel="stylesheet"
     />
 
+    <script src="js/carMockData.js"></script>
+    <script src="js/cars-list.js"></script>
+
     <link rel="stylesheet" href="style/style.css" />
     <link rel="stylesheet" href="style/carousel.css" />
   </head>
@@ -271,19 +274,38 @@
       </div>
     </div>
     <!-- End Search -->
-
     <!-- Start Car List -->
     <div id="car-list">
-      <section class="car-item">
-        aaa
-      </section>
-      <aside class="car-image">
-        ggg
-      </aside>
+      <div class="car-box">
+        <div class="row">
+          <div class="col-sm-7 car-item">
+            <div class="car-info">Marka / Model</div>
+            <ul class="car-features">
+              <li class="car-features-list">
+                <img class="car-features-list-image" src="./assets/calendar.png" alt="Rok" />
+                <p class="year">Rok</p>
+              </li>
+              <li class="car-features-list">
+                <img class="car-features-list-image" src="./assets/speedometer.png" alt="Przebieg" />
+                <p class="odometer">Przebieg</p>
+              </li>
+              <li class="car-features-list">
+                <img class="car-features-list-image" src="./assets/energy.png" alt="Moc" />
+                <p class="power">Moc</p>
+              </li>
+            </ul>
+            <div class="car-price">Cena</div>
+          </div>
+          <div class="col-sm-5 car-image">
+            <img class="car-image" src='https://images.pexels.com/photos/7469142/pexels-photo-7469142.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' alt="Obrazek" />
+          </div>
+        </div>
+      </div>
     </div>
     <!-- End Car List -->
 
     <script src="js/carousel.js"></script>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
