@@ -14,7 +14,6 @@ body {
 
 .navbar li a {
     display: block;
-    
 }
 
 .logo {
@@ -31,6 +30,11 @@ body {
 .nav-right {
     text-align: right;
     margin-right: 50px;
+}
+
+.btn {
+    height: 6vh;
+    margin: 0 auto;
 }
 
 .btn-outline {
@@ -113,6 +117,7 @@ label {
     background-color: white;
     height: 4vh;
     text-align: left;
+    font-size: 2vh;
 }
   
 #model {
@@ -121,65 +126,85 @@ label {
     text-align: left;
     cursor: auto;
     height: 4vh;
+    font-size: 2vh;
 }
 
 .datefield-year {
-    margin: 2px 20px 2px 5px;
+    margin: 5px 20px 5px 5px;
     padding: 0;
     background-color: white;
     text-align: right;
     height: 4vh;
+    font-size: 2vh;
 }
 
 .price {
     margin: 5px 20px 5px 5px;
+    padding: 0;
     background-color: white;
     text-align: right;
     height: 4vh;
-    padding: 0;
+    font-size: 2vh;
 }
 
 .search-submit {
     background-color:#32393e;
     color: rgba(255, 255, 255, .55);
     border-color: rgba(255, 255, 255, .55);
-    
+    height: 4vh;
+    font-size: 2vh;
 } 
 
 .search-submit:hover {
     color: white;
 }
 
+form div {
+    display: inline;
+}
 
+@media (max-width: 500px) {
+    form div {
+        display: block;
+    }
+}
 
+/* Car list */
+.car-image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
 
-#car-list {
-    border: solid 1px;
+.car-box {
+    box-shadow: 0px 0px 19px -8px rgba(50, 57, 62, 1);
     margin: 2vw;
-    border-radius: 5px;
-    border-color: #464d55;
-    font-size: 2vh;
-    box-shadow: 8px 8px 24px 0px rgba(70, 77, 85, 1);
 }
 
-
-
-
-.car-features-list-image {
-    height: 4vh;
-    width: auto;
-}
-
-img {
-    display: inline-block;
-    float: left;
+.car-image-div {
+    padding: 0;
 }
 
 .car-item {
-    margin: 1vw;
+    font-size: 32px;
 }
 
-.car-image {
-    height: auto;
-    width:30vw
+.car-feature-list {
+    list-style: none;
+}
+
+.car-feature img {
+    height: 3vh;
+    width: auto;
+    margin: 5px 30px 5px 150px;
+}
+
+.year, .odometer, .power {
+    display: inline;
+}
+
+.price2 {
+    font-size: 32px;
+    font-style: italic;
+    float: right;
 }
