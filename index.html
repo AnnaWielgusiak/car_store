@@ -18,7 +18,6 @@
     />
 
     <script src="js/carMockData.js"></script>
-    <script src="js/cars-list.js"></script>
 
     <link rel="stylesheet" href="style/style.css" />
     <link rel="stylesheet" href="style/carousel.css" />
@@ -32,8 +31,8 @@
       <button
         class="navbar-toggler"
         type="button"
-        data-toggle="collapse"
-        data-target="#navbarToggler"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarToggler"
         aria-controls="navbarToggler"
         aria-expanded="false"
         aria-label="Toggle navigation"
@@ -43,7 +42,7 @@
       <div class="collapse navbar-collapse" id="navbarToggler">
         <ul class="navbar-nav mt-2 mt-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="#home_page">Kup auto</a>
+            <a class="nav-link" id="buy-car" href="#car-list">Kup auto</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Formularz</a>
@@ -92,67 +91,94 @@
     <div id="carousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <a href="#" class="carousel-item active" data-bs-interval="2000">
-          <img
-            src="/assets/brands/1920px-Audi_logo_detail.svg.png"
-            class="w-25 brand-image"
-            alt="Audi"
-          />
+          <figure>
+            <img
+              src="/assets/brands/1920px-Audi_logo_detail.svg.png"
+              class="w-100 brand-image"
+              alt="Audi"
+            />
+            <figcaption class="anountOfItem">Audi</figcaption>
+          </figure>
         </a>
         <a href="#" class="carousel-item">
-          <img
-            src="/assets/brands/BMW.png"
-            class="d-block w-25 brand-image"
-            alt="BMW"
-          />
+          <figure>
+            <img
+              src="/assets/brands/BMW.png"
+              class="w-100 brand-image"
+              alt="BMW"
+            />
+            <figcaption class="anountOfItem">BMW</figcaption>
+          </figure>
         </a>
         <a href="#" class="carousel-item">
-          <img
-            src="/assets/brands/fiat-logo-vector-01.png"
-            class="w-25 brand-image"
-            alt="Fiat"
-          />
+          <figure>
+            <img
+              src="/assets/brands/fiat-logo-vector-01.png"
+              class="w-100 brand-image"
+              alt="Fiat"
+            />
+            <figcaption class="anountOfItem">Fiat</figcaption>
+          </figure>
         </a>
         <a href="#" class="carousel-item">
-          <img
-            src="/assets/brands/Ford_Motor_Company_Logo.png"
-            class="w-25 brand-image"
-            alt="Ford"
-          />
+          <figure>
+            <img
+              src="/assets/brands/Ford_Motor_Company_Logo.png"
+              class="w-100 brand-image"
+              alt="Ford"
+            />
+            <figcaption class="anountOfItem">Ford</figcaption>
+          </figure>
         </a>
         <a href="#" class="carousel-item">
-          <img
-            src="/assets/brands/Mercedes-Benz_Star.png"
-            class="w-25 brand-image"
-            alt="Mercedes"
-          />
+          <figure>
+            <img
+              src="/assets/brands/Mercedes-Benz_Star.png"
+              class="w-100 brand-image"
+              alt="Mercedes"
+            />
+            <figcaption class="anountOfItem">Mercedes</figcaption>
+          </figure>
         </a>
         <a href="#" class="carousel-item">
-          <img
-            src="/assets/brands/Opel-Logo_2017.png"
-            class="w-25 brand-image"
-            alt="Opel"
-          />
+          <figure>
+            <img
+              src="/assets/brands/Opel-Logo_2017.png"
+              class="w-100 brand-image"
+              alt="Opel"
+            />
+            <figcaption class="anountOfItem">Opel</figcaption>
+          </figure>
         </a>
         <a href="#" class="carousel-item">
-          <img
-            src="/assets/brands/Skoda-01.png"
-            class="w-25 brand-image"
-            alt="Skoda"
-          />
+          <figure>
+            <img
+              src="/assets/brands/Skoda-01.png"
+              class="w-100 brand-image"
+              alt="Skoda"
+            />
+            <figcaption class="anountOfItem">Skoda</figcaption>
+          </figure>
         </a>
         <a href="#" class="carousel-item">
-          <img
-            src="/assets/brands/Toyota_EU.png"
-            class="w-25 brand-image"
-            alt="Toyota"
-          />
+          <figure>
+            <img
+              src="/assets/brands/Toyota_EU.png"
+              class="w-100 brand-image"
+              alt="Toyota"
+            />
+            <figcaption class="anountOfItem">Toyota</figcaption>
+          </figure>
         </a>
         <a href="#" class="carousel-item">
-          <img
-            src="/assets/brands/Volkswagen_logo_2019.png"
-            class="w-25 brand-image"
-            alt="Volkswagen"
-          />
+          <figure>
+            <img
+              src="/assets/brands/Volkswagen_logo_2019.png"
+              class="w-100 brand-image"
+              alt="Volkswagen"
+            />
+            <figcaption class="anountOfItem">Volkswagen</figcaption>
+          </figure>
         </a>
       </div>
       <button
@@ -253,7 +279,7 @@
                 <option value="<1999">1999</option>
               </select>
             </div>
-            <label for="price">Cena od:</label>
+            <label for="price">Cena do:</label>
             <select class="btn price" name="price" title="price">
               <option value="5000">5000</option>
               <option value="10000">10000</option>
@@ -284,277 +310,49 @@
     </div>
     <!-- End Search -->
     <!-- Start Car List -->
-    <div id="car-list">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="row car-box">
-            <div class="col-lg-6 car-image-div">
-            </div>
-            <div class="col-lg-6">
-              <div class="car-item">Marka/model</div>
-              <ul class="car-feature-list">
-                <li class="car-feature car-feature-year">
-                  <img src="./assets/calendar.png" alt="Rok" />
-                  <p class="year">rok</p>
-                </li>
-                <li class="car-feature car-feature-speedometer">
-                  <img src="./assets/speedometer.png" alt="Przebieg" />
-                  <p class="odometer">km</p>
-                </li>
-                <li class="car-feature car-feature-power">
-                  <img src="./assets/energy.png" alt="Moc" />
-                  <p class="power">KM</p>
-                </li>
-              </ul>
-              <div class="car-price">Cena:</div>
-              <p class="price2">zł</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="row car-box">
-            <div class="col-lg-6 car-image-div">
-            </div>
-            <div class="col-lg-6">
-              <div class="car-item">Marka/model</div>
-              <ul class="car-feature-list">
-                <li class="car-feature car-feature-year">
-                  <img src="./assets/calendar.png" alt="Rok" />
-                  <p class="year">rok</p>
-                </li>
-                <li class="car-feature car-feature-speedometer">
-                  <img src="./assets/speedometer.png" alt="Przebieg" />
-                  <p class="odometer">km</p>
-                </li>
-                <li class="car-feature car-feature-power">
-                  <img src="./assets/energy.png" alt="Moc" />
-                  <p class="power">KM</p>
-                </li>
-              </ul>
-              <div class="car-price">Cena:</div>
-              <p class="price2">zł</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="row car-box">
-            <div class="col-lg-6 car-image-div">
-            </div>
-            <div class="col-lg-6">
-              <div class="car-item">Marka/model</div>
-              <ul class="car-feature-list">
-                <li class="car-feature car-feature-year">
-                  <img src="./assets/calendar.png" alt="Rok" />
-                  <p class="year">rok</p>
-                </li>
-                <li class="car-feature car-feature-speedometer">
-                  <img src="./assets/speedometer.png" alt="Przebieg" />
-                  <p class="odometer">km</p>
-                </li>
-                <li class="car-feature car-feature-power">
-                  <img src="./assets/energy.png" alt="Moc" />
-                  <p class="power">KM</p>
-                </li>
-              </ul>
-              <div class="car-price">Cena:</div>
-              <p class="price2">zł</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="row car-box">
-            <div class="col-lg-6 car-image-div">
-            </div>
-            <div class="col-lg-6">
-              <div class="car-item">Marka/model</div>
-              <ul class="car-feature-list">
-                <li class="car-feature car-feature-year">
-                  <img src="./assets/calendar.png" alt="Rok" />
-                  <p class="year">rok</p>
-                </li>
-                <li class="car-feature car-feature-speedometer">
-                  <img src="./assets/speedometer.png" alt="Przebieg" />
-                  <p class="odometer">km</p>
-                </li>
-                <li class="car-feature car-feature-power">
-                  <img src="./assets/energy.png" alt="Moc" />
-                  <p class="power">KM</p>
-                </li>
-              </ul>
-              <div class="car-price">Cena:</div>
-              <p class="price2">zł</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="row car-box">
-            <div class="col-lg-6 car-image-div">
-            </div>
-            <div class="col-lg-6">
-              <div class="car-item">Marka/model</div>
-              <ul class="car-feature-list">
-                <li class="car-feature car-feature-year">
-                  <img src="./assets/calendar.png" alt="Rok" />
-                  <p class="year">rok</p>
-                </li>
-                <li class="car-feature car-feature-speedometer">
-                  <img src="./assets/speedometer.png" alt="Przebieg" />
-                  <p class="odometer">km</p>
-                </li>
-                <li class="car-feature car-feature-power">
-                  <img src="./assets/energy.png" alt="Moc" />
-                  <p class="power">KM</p>
-                </li>
-              </ul>
-              <div class="car-price">Cena:</div>
-              <p class="price2">zł</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="row car-box">
-            <div class="col-lg-6 car-image-div">
-            </div>
-            <div class="col-lg-6">
-              <div class="car-item">Marka/model</div>
-              <ul class="car-feature-list">
-                <li class="car-feature car-feature-year">
-                  <img src="./assets/calendar.png" alt="Rok" />
-                  <p class="year">rok</p>
-                </li>
-                <li class="car-feature car-feature-speedometer">
-                  <img src="./assets/speedometer.png" alt="Przebieg" />
-                  <p class="odometer">km</p>
-                </li>
-                <li class="car-feature car-feature-power">
-                  <img src="./assets/energy.png" alt="Moc" />
-                  <p class="power">KM</p>
-                </li>
-              </ul>
-              <div class="car-price">Cena:</div>
-              <p class="price2">zł</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="row car-box">
-            <div class="col-lg-6 car-image-div">
-            </div>
-            <div class="col-lg-6">
-              <div class="car-item">Marka/model</div>
-              <ul class="car-feature-list">
-                <li class="car-feature car-feature-year">
-                  <img src="./assets/calendar.png" alt="Rok" />
-                  <p class="year">rok</p>
-                </li>
-                <li class="car-feature car-feature-speedometer">
-                  <img src="./assets/speedometer.png" alt="Przebieg" />
-                  <p class="odometer">km</p>
-                </li>
-                <li class="car-feature car-feature-power">
-                  <img src="./assets/energy.png" alt="Moc" />
-                  <p class="power">KM</p>
-                </li>
-              </ul>
-              <div class="car-price">Cena:</div>
-              <p class="price2">zł</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="row car-box">
-            <div class="col-lg-6 car-image-div">
-            </div>
-            <div class="col-lg-6">
-              <div class="car-item">Marka/model</div>
-              <ul class="car-feature-list">
-                <li class="car-feature car-feature-year">
-                  <img src="./assets/calendar.png" alt="Rok" />
-                  <p class="year">rok</p>
-                </li>
-                <li class="car-feature car-feature-speedometer">
-                  <img src="./assets/speedometer.png" alt="Przebieg" />
-                  <p class="odometer">km</p>
-                </li>
-                <li class="car-feature car-feature-power">
-                  <img src="./assets/energy.png" alt="Moc" />
-                  <p class="power">KM</p>
-                </li>
-              </ul>
-              <div class="car-price">Cena:</div>
-              <p class="price2">zł</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="row car-box">
-            <div class="col-lg-6 car-image-div">
-            </div>
-            <div class="col-lg-6">
-              <div class="car-item">Marka/model</div>
-              <ul class="car-feature-list">
-                <li class="car-feature car-feature-year">
-                  <img src="./assets/calendar.png" alt="Rok" />
-                  <p class="year">rok</p>
-                </li>
-                <li class="car-feature car-feature-speedometer">
-                  <img src="./assets/speedometer.png" alt="Przebieg" />
-                  <p class="odometer">km</p>
-                </li>
-                <li class="car-feature car-feature-power">
-                  <img src="./assets/energy.png" alt="Moc" />
-                  <p class="power">KM</p>
-                </li>
-              </ul>
-              <div class="car-price">Cena:</div>
-              <p class="price2">zł</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="row car-box">
-            <div class="col-lg-6 car-image-div">
-            </div>
-            <div class="col-lg-6">
-              <div class="car-item">Marka/model</div>
-              <ul class="car-feature-list">
-                <li class="car-feature car-feature-year">
-                  <img src="./assets/calendar.png" alt="Rok" />
-                  <p class="year">rok</p>
-                </li>
-                <li class="car-feature car-feature-speedometer">
-                  <img src="./assets/speedometer.png" alt="Przebieg" />
-                  <p class="odometer">km</p>
-                </li>
-                <li class="car-feature car-feature-power">
-                  <img src="./assets/energy.png" alt="Moc" />
-                  <p class="power">KM</p>
-                </li>
-              </ul>
-              <div class="car-price">Cena:</div>
-              <p class="price2">zł</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
+    <div id="car-list"></div>
     <!-- End Car List -->
+    <!-- Start Form for choosen car -->
+    <div id="form" >
+      <div class="row d-flex chosen-car">
+      <div class="col-lg-8 col-md-6 div-chosen-car-image">
+        <img class="chosen-car-image" src='https://images.pexels.com/photos/1035108/pexels-photo-1035108.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' alt="${car.brand} ${car.model}"/>       
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="car-item">${car.brand}/${car.model}</div>
+        <ul class="car-feature-list">
+          <li class="car-feature car-feature-year">
+            <img src="./assets/calendar.png" alt="Rok"/>
+            <p class="year">${car.year} rok</p>
+          </li>
+          <li class="car-feature car-feature-speedometer">
+            <img src="./assets/speedometer.png" alt="Przebieg"/>
+            <p class="odometer">${car.odometer} km</p>
+          </li>
+          <li class="car-feature car-feature-power">
+            <img src="./assets/energy.png" alt="Moc"/>
+            <p class="power">${car.power} KM</p>
+          </li>
+        </ul>
+        <div class="car-price">Cena:</div>
+        <p class="price2">${car.price} zł</p>
+      </div>
+    </div>
+    </div>
+    <!-- End Form -->
 
     <script src="js/carousel.js"></script>
+    <script src="js/cars-list.js"></script>
+    <script src="js/form.js"></script>
 
     <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+      integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+      integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
       crossorigin="anonymous"
     ></script>
   </body>

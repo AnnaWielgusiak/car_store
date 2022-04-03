@@ -228,7 +228,7 @@ const CARS = [
 	},
 	{
 		'id': 7,
-		'brand': 'Mercedes-Benz',
+		'brand': 'Mercedes',
 		'model': 'S 500',
 		'price': 199000,
 		'year': 2014,
@@ -339,7 +339,7 @@ const CARS = [
 	},
 	{
 		'id': 10,
-		'brand': 'Škoda',
+		'brand': 'Skoda',
 		'model': 'Superb',
 		'price': 125900,
 		'year': 2017,

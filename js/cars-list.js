@@ -1,32 +1,57 @@
-console.log(CARS);
+document.getElementById("buy-car").onclick = function() {fillCarList(CARS)};
 
-document.addEventListener("DOMContentLoaded", function ($event) {
-  fillCarlist();
-});
+const carModal = (car) => {
+  const markup = `
+      <div class="row car-box" id=${car.id} onclick="getId(this)">
+        <div class="col-lg-6 car-image-div">
+        <img src="${car.picture}" alt="${car.brand} ${car.model}" class="car-image"/>
+        </div>
+        <div class="col-lg-6">
+          <div class="car-item">${car.brand}/${car.model}</div>
+          <ul class="car-feature-list">
+            <li class="car-feature car-feature-year">
+              <img src="./assets/calendar.png" alt="Rok"/>
+              <p class="year">${car.year} rok</p>
+            </li>
+            <li class="car-feature car-feature-speedometer">
+              <img src="./assets/speedometer.png" alt="Przebieg"/>
+              <p class="odometer">${car.odometer} km</p>
+            </li>
+            <li class="car-feature car-feature-power">
+              <img src="./assets/energy.png" alt="Moc"/>
+              <p class="power">${car.power} KM</p>
+            </li>
+          </ul>
+          <div class="car-price">Cena:</div>
+          <p class="price2">${car.price} zł</p>
+        </div>
+      </div>
+  `;
 
-const fillCarlist = () => {
-  let carImage = document.getElementsByClassName("car-image-div");
-  let imgArray = new Array();
-  let carItem = document.getElementsByClassName("car-item");
-  let carYear = document.getElementsByClassName("year");
-  let carOdometer = document.getElementsByClassName("odometer");
-  let carPower = document.getElementsByClassName("power");
-  let carPrice = document.getElementsByClassName("price2");
+  const div = document.createElement('div');
+  div.className = 'col-md-6';
+  div.innerHTML = markup;
 
+  return div;
+};
 
-  for (let i=0; i < CARS.length; i++) {
-    imgArray[i] = new Image();
-    imgArray[i].src = CARS[i].picture;
-    imgArray[i].alt = `${CARS[i].brand} ${CARS[i].model}`; 
-    imgArray[i].classList.add("car-image");
-    console.log(imgArray[i])
-    carImage[i].appendChild(imgArray[i]);
-    carItem[i].innerText = `${CARS[i].brand} / ${CARS[i].model}`;
-    carYear[i].innerText = `${CARS[i].year} rok`
-    carOdometer[i].innerText = `${CARS[i].odometer} km`;
-    carPower[i].innerText = `${CARS[i].power} KM`;
-    carPrice[i].innerText = `${CARS[i].price} zł`; 
-  
+const toPairs = (result, value, index, array) => {
+  if (index % 2 === 0) {
+    result.push(array.slice(index, index + 2));
   }
+  return result;
+};
 
+const fillCarList = (cars) => {
+  cars
+  .map(carModal)
+  .reduce(toPairs, [])
+  .map(carPair => {
+    const div = document.createElement('div');
+    div.className = 'row';
+    div.appendChild(carPair[0]);
+    div.appendChild(carPair[1]);
+    return div;
+  })
+  .forEach(div => document.getElementById('car-list').appendChild(div));
 };

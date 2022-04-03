@@ -13,3 +13,20 @@ items.forEach((el) => {
         next = next.nextElementSibling
     }
 })
+
+const arrOfTheBrands = [];
+CARS.forEach((CAR) => {
+    arrOfTheBrands.push(CAR.brand);
+});
+
+const countsTheSameBarnds = {};
+arrOfTheBrands.forEach((x) => {
+    countsTheSameBarnds[x] = (countsTheSameBarnds[x] || 0) + 1;
+});
+
+const amount = document.getElementsByClassName("anountOfItem");
+for (const value of amount) {
+    value.innerText += ` (${countsTheSameBarnds[value.innerText]})`;
+}
+
+
