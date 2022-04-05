@@ -1,7 +1,7 @@
 (() => {
   const carModal = (car) => {
     const markup = /*html*/ `
-      <div class="row car-box" id=${car.id}">
+      <div class="row car-box" id=${car.id} onclick = "displayFormWithCar(this)">
         <div class="col-lg-6 car-image-div">
         <img src="${car.picture}" alt="${car.brand} ${car.model}" class="car-image"/>
         </div>
@@ -30,7 +30,6 @@
     const div = document.createElement("div");
     div.className = "col-md-6";
     div.innerHTML = markup;
-    div.onclick = () => displayFormWithCar(car);
 
     return div;
   };
@@ -57,7 +56,6 @@
 
   const showCarList = () => {
     show(document.getElementById("car-list"));
-    hide(document.getElementById("formId"));
   };
 
   window.onload = () => fillCarList(CARS);

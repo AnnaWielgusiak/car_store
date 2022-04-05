@@ -1,4 +1,5 @@
-const displayFormWithCar = (car) => {
+const displayFormWithCar = (btn) => {
+  const car = CARS[btn.id - 1];
   const carChosenImage = document.getElementById("chosen-car-image");
   carChosenImage.src = `${car.picture}`;
   carChosenImage.alt = `${car.brand} / ${car.model}`;
@@ -20,4 +21,5 @@ const displayFormWithCar = (car) => {
 
   hide(document.getElementById('car-list'));
   show(document.getElementById('formId'));
+  show(document.getElementById('form'));
 };
