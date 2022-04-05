@@ -204,6 +204,10 @@ form div {
 }
 
 /* Car list */
+#car-list {
+    display: none;
+}
+
 .car-image {
     height: 100%;
     width: 100%;

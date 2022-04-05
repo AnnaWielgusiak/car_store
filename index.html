@@ -18,6 +18,8 @@
     />
 
     <script src="js/carMockData.js"></script>
+    <script src="js/commons.js"></script>
+    <script src="js/form.js"></script>
 
     <link rel="stylesheet" href="style/style.css" />
     <link rel="stylesheet" href="style/carousel.css" />
@@ -45,7 +47,7 @@
             <a class="nav-link" id="buy-car" href="#car-list">Kup auto</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Formularz</a>
+            <a class="nav-link" id="form" href="#formId" style="display: none">Formularz</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Podsumowanie</a>
@@ -310,41 +312,43 @@
     </div>
     <!-- End Search -->
     <!-- Start Car List -->
-    <div id="car-list"></div>
+    <div id="car-list" style="display: none"></div>
     <!-- End Car List -->
     <!-- Start Form for choosen car -->
-    <div id="form" >
+    <div id="formId" style="display: none">
       <div class="row d-flex chosen-car">
-      <div class="col-lg-8 col-md-6 div-chosen-car-image">
-        <img class="chosen-car-image" src='https://images.pexels.com/photos/1035108/pexels-photo-1035108.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' alt="${car.brand} ${car.model}"/>       
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="car-item">${car.brand}/${car.model}</div>
-        <ul class="car-feature-list">
-          <li class="car-feature car-feature-year">
-            <img src="./assets/calendar.png" alt="Rok"/>
-            <p class="year">${car.year} rok</p>
-          </li>
-          <li class="car-feature car-feature-speedometer">
-            <img src="./assets/speedometer.png" alt="Przebieg"/>
-            <p class="odometer">${car.odometer} km</p>
-          </li>
-          <li class="car-feature car-feature-power">
-            <img src="./assets/energy.png" alt="Moc"/>
-            <p class="power">${car.power} KM</p>
-          </li>
-        </ul>
-        <div class="car-price">Cena:</div>
-        <p class="price2">${car.price} zł</p>
-      </div>
-    </div>
+        <div class="col-lg-8 col-md-6 div-chosen-car-image">
+          <img
+            id="chosen-car-image"
+            class="chosen-car-image"
+          />
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="car-item" id="chosen-car-item">
+          </div>
+          <ul class="car-feature-list" id="chosen-car-feature">
+            <li class="car-feature car-feature-year">
+              <img src="./assets/calendar.png" alt="Rok" />
+              <p id="chosen-car-year" class="year"></p>
+            </li>
+            <li class="car-feature car-feature-speedometer">
+              <img src="./assets/speedometer.png" alt="Przebieg" />
+              <p id="chosen-car-odometer" class="odometer"></p>
+            </li>
+            <li class="car-feature car-feature-power">
+              <img src="./assets/energy.png" alt="Moc" />
+              <p id="chosen-car-power" class="power"></p>
+            </li>
+          </ul>
+          <div class="car-price">Cena:</div>
+          <p id="chosen-car-price" class="price2"></p>
+        </div>
+      </div>;
     </div>
     <!-- End Form -->
 
     <script src="js/carousel.js"></script>
     <script src="js/cars-list.js"></script>
-    <script src="js/form.js"></script>
-
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
       integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"

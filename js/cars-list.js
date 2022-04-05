@@ -1,8 +1,7 @@
-document.getElementById("buy-car").onclick = function() {fillCarList(CARS)};
-
-const carModal = (car) => {
-  const markup = `
-      <div class="row car-box" id=${car.id} onclick="getId(this)">
+(() => {
+  const carModal = (car) => {
+    const markup = /*html*/ `
+      <div class="row car-box" id=${car.id}">
         <div class="col-lg-6 car-image-div">
         <img src="${car.picture}" alt="${car.brand} ${car.model}" class="car-image"/>
         </div>
@@ -28,30 +27,39 @@ const carModal = (car) => {
       </div>
   `;
 
-  const div = document.createElement('div');
-  div.className = 'col-md-6';
-  div.innerHTML = markup;
+    const div = document.createElement("div");
+    div.className = "col-md-6";
+    div.innerHTML = markup;
+    div.onclick = () => displayFormWithCar(car);
 
-  return div;
-};
-
-const toPairs = (result, value, index, array) => {
-  if (index % 2 === 0) {
-    result.push(array.slice(index, index + 2));
-  }
-  return result;
-};
-
-const fillCarList = (cars) => {
-  cars
-  .map(carModal)
-  .reduce(toPairs, [])
-  .map(carPair => {
-    const div = document.createElement('div');
-    div.className = 'row';
-    div.appendChild(carPair[0]);
-    div.appendChild(carPair[1]);
     return div;
-  })
-  .forEach(div => document.getElementById('car-list').appendChild(div));
-};
+  };
+
+  const toPairs = (result, value, index, array) => {
+    if (index % 2 === 0) {
+      result.push(array.slice(index, index + 2));
+    }
+    return result;
+  };
+
+  const fillCarList = (cars) => {
+    cars
+      .map(carModal)
+      .reduce(toPairs, [])
+      .map((carPair) => {
+        const div = document.createElement("div");
+        div.className = "row";
+        carPair.forEach((car) => div.appendChild(car));
+        return div;
+      })
+      .forEach((div) => document.getElementById("car-list").appendChild(div));
+  };
+
+  const showCarList = () => {
+    show(document.getElementById("car-list"));
+    hide(document.getElementById("formId"));
+  };
+
+  window.onload = () => fillCarList(CARS);
+  document.getElementById("buy-car").addEventListener("click", showCarList);
+})();
