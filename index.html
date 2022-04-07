@@ -17,6 +17,7 @@
     <script src="js/carMockData.js"></script>
     <script src="js/commons.js"></script>
     <script src="js/form.js"></script>
+    <script src="js/summary.js"></script>
 
     <link rel="stylesheet" href="style/style.css" />
     <link rel="stylesheet" href="style/carousel.css" />
@@ -44,10 +45,10 @@
             <a class="nav-link" id="buy-car" href="#car-list">Kup auto</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="form" href="#form-id" style="display: none">Formularz</a>
+            <a class="nav-link disabled" id="form" href="#form-id">Formularz</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Podsumowanie</a>
+            <a class="nav-link disabled" id="summary-in-nav" href="#summary">Podsumowanie</a>
           </li>
         </ul>
       </div>
@@ -275,26 +276,104 @@
             <form>
               <label for="accessories" id="label-for-feature">Wybierz dodatkowe akcesoria:</label>
               <div class="div-accessories">
-              <select name="faetures-for-add" id="faetures-for-add" size="5">
-
-              </select>
+                <select name="faetures-for-add" id="faetures-for-add" size="5"></select>
               </div>
               <div class="div-accessories">
                 <button type="button" class="btn add-delete" id="add">+</button>
                 <button type="button" class="btn add-delete" id="delete">-</button>
               </div>
               <div class="div-accessories">
-              <select name="feature-added" id="feature-added" size="5">
-              </select>
+                <select name="feature-added" id="feature-added" size="5"></select>
               </div>
             </form>
           </div>
         </div>
       </div>
+      <div class="row d-flex owner-data">
+        <h3>Dane właściciela</h3>
+        <div class="row form-row">
+          <div class="col">
+            <label for="owner-data" class="main-form-labels">Imię i nazwisko:</label>
+          </div>
+          <div class="col">
+            <input type="text" id="name" />
+          </div>
+        </div>
+        <div class="row form-row">
+          <div class="col">
+            <label for="owner-data" class="main-form-labels">Finansowanie:</label>
+          </div>
+          <div class="col" id="financing">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" role="switch" id="money" value="money" checked />
+              <label class="form-check-label" for="flexSwitchCheckChecked">Gotówka</label>
+            </div>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" role="switch" id="leasing" value="leasing" />
+              <label class="form-check-label" for="flexSwitchCheckDefault">Leasing</label>
+            </div>
+          </div>
+        </div>
+        <div class="row form-row">
+          <div class="col">
+            <label for="delivery-data" class="main-form-labels">Data dostawy:</label>
+          </div>
+          <div class="col">
+            <input type="date" id="delivery" name="delivery" />
+          </div>
+        </div>
+        <div class="row form-row">
+          <div class="col">
+            <input type="button" value="Wyczyść dane" id="clean" />
+          </div>
+            <div class="col">
+            <input type="button" value="Zapisz dane" id="save" />
+          </div>
+          </div>
+        <div class="row form-row">
+          <div class="col">
+            <input type="button" value="Powrót do wyboru" id="back" />
+          </div>
+          <div class="col">
+            <input type="button" value="Zakup" id="buy" />
+          </div>
+        </div>
+      </div>
     </div>
-
-
     <!-- End Form -->
+    <!-- Start alert about mistakes-->
+    <div id="alert" style="display: none">
+      <p>Błędnie wypełniłeś dane odbiorcy!!!<br />Imię i nazwisko jest puste lub zawiera niedozwolone znaki!</p>
+    </div>
+    <!-- End alert about mistakes -->
+    <!-- Start summary -->
+    <div id="summary" style="display: none">
+      <div class="row d-flex chosen-car">
+        <div class="col-lg-8 col-md-6 div-chosen-car-image">
+          <img id="final-chosen-car-image" />
+        </div>
+        <div class="col-lg-4 col-md-6 final-chosen-car">
+          <h1>Dziękujemy za Twoje zakupy!</h1>
+          <div>
+            <h4>Wybrałeś:</h4>
+            <h1 id="final-chosen-car-data"></h1>
+          </div>
+          <div>
+            <h4>Wybrana metoda płatności to:</h4>
+            <h1 id="final-chosen-financing"></h1>
+          </div>
+          <div>
+            <h4>Przewidywana data dostawy:</h4>
+            <h1 id="final-delivery-data"></h1>
+          </div>
+          <div>
+            <h4>Cena:</h4>
+            <h1 id="final-price"></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End dummary -->
 
     <script src="js/carousel.js"></script>
     <script src="js/cars-list.js"></script>

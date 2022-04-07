@@ -1,4 +1,5 @@
 (() => {
+  // Preparing div widt one car data
   const carModal = (car) => {
     const markup = /*html*/ `
       <div class="row car-box" id=${car.id} onclick = "displayFormWithCar(this)">
@@ -27,6 +28,7 @@
       </div>
   `;
 
+    // Creating main div for car data
     const div = document.createElement("div");
     div.className = "col-md-6";
     div.innerHTML = markup;
@@ -34,6 +36,7 @@
     return div;
   };
 
+  // Changing main div for pairs of dives
   const toPairs = (result, value, index, array) => {
     if (index % 2 === 0) {
       result.push(array.slice(index, index + 2));
@@ -55,8 +58,26 @@
 
   const showCarList = () => {
     show(document.getElementById("car-list"));
+    hide(document.getElementById('form-id'));
+    hide(document.getElementById('summary'));
   };
 
+  const emptySelectAccesorriesList = (selectToEmpty) => {
+    for (i = 0; i < selectToEmpty.options.length - 1; i++) {
+      selectToEmpty.remove(i);
+    }
+  }
+
   window.onload = () => fillCarList(CARS);
-  document.getElementById("buy-car").addEventListener("click", showCarList);
+  document.getElementById("buy-car").addEventListener("click", () => {
+    showCarList();
+    let selectCarAccessoriesToEmpty = document.getElementById("features-for-add")
+    let selectAccessoriesToEmpty = document.getElementById("feature-added")
+    if (selectCarAccessoriesToEmpty !== null) {
+      emptySelectAccesorriesList(selectCarAccessoriesToEmpty);
+    }
+    if (selectAccessoriesToEmpty !== null) {
+      emptySelectAccesorriesList(selectAccessoriesToEmpty);
+    }
+  });
 })();
