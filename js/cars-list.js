@@ -40,7 +40,6 @@
     }
     return result;
   };
-
   const fillCarList = (cars) => {
     cars
       .map(carModal)
