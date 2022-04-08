@@ -59,12 +59,12 @@ const displayFormWithCar = (btn) => {
   document.getElementById("buy").addEventListener("click", () => {
     let finalPriceToGive = getingAcctualPrice()[0];
     if (getAndCheckData() === null) {
-        show(document.getElementById('form-id'));
-        hide(document.getElementById('summary'));
+      show(document.getElementById('form-id'));
+      hide(document.getElementById('summary'));
     } else {
+      window.localStorage.clear();
       displaySummary(car, getAndCheckData(), finalPriceToGive);
     }
-
   });
 
   //Back to the car list
@@ -75,6 +75,34 @@ const displayFormWithCar = (btn) => {
     hide(document.getElementById('summary'));
   });
 
+  //Save data to localStorage
+  document.getElementById("save").addEventListener("click", () => {
+    let finalPriceToGive = getingAcctualPrice()[0];
+    if (getAndCheckData() === null) {
+      show(document.getElementById('form-id'));
+      hide(document.getElementById('summary'));
+    } else {
+      window.localStorage.clear();
+      saveToLocalStorage(car, getAndCheckData(), finalPriceToGive);
+    }
+  })
+
+  //Clean data from localStorage
+  document.getElementById("clean").addEventListener("click", () => {
+    window.localStorage.clear();
+
+    const posibleFeaturesForAdd = car.accessories;
+    const SelectFieldForFeaturesForAdd = document.getElementById("faetures-for-add");
+    SelectFieldForFeaturesForAdd.innerHTML = posibleFeaturesForAdd.map(c => `<option value=${c.id}> ${c.name}: ${c.price} zł </option>`).join('');
+
+    document.getElementById("feature-added").innerHTML = "";
+    document.getElementById("chosen-car-price").innerText = `${car.price} zł`;
+    document.getElementById("name").value = "";
+    let checkedMoney = document.getElementById("money");
+    let checkedLeasing = document.getElementById("leasing");
+    checkedMoney.checked = true;
+    changeCheck(checkedMoney, checkedLeasing);
+  })
 }
 
 const getingAcctualPrice = () => {
@@ -87,6 +115,7 @@ const getingAcctualPrice = () => {
 const createOption = (posibleFeaturesForAdd, removedFeature) => {
   let option = document.createElement("option");
   option.value = removedFeature.value;
+
   option.innerText = `${posibleFeaturesForAdd[removedFeature.value-1].name}: ${posibleFeaturesForAdd[removedFeature.value-1].price} zł`
   return option
 }
@@ -97,7 +126,6 @@ const addRemove = (posibleFeaturesForAdd) => {
   let addedFeature = document.getElementById("feature-added");
 
   pricesArrayToAdd.push(posibleFeaturesForAdd[removedFeature.value - 1].price);
-
   addedFeature.add(createOption(posibleFeaturesForAdd, removedFeature));
   removedFeature.remove(removedFeature.selectedIndex);
 

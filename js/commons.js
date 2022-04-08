@@ -37,3 +37,4 @@ const toggleVisibility = (element) => {
     hide(element);
   }
 };
+

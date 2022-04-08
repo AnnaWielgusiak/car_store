@@ -68,7 +68,36 @@
     }
   }
 
-  window.onload = () => fillCarList(CARS);
+    document.getElementById("form").addEventListener("click", () => {
+      show(document.getElementById('form-id'));
+      hide(document.getElementById('car-list'));
+      hide(document.getElementById('summary'));
+    });
+
+  	document.getElementById("summary-in-nav").addEventListener("click", () => {
+  	  hide(document.getElementById('form-id'));
+  	  hide(document.getElementById('car-list'));
+  	  hide(document.getElementById('alert'));
+  	  show(document.getElementById('summary'));
+    });
+
+
+
+  window.onload = () => {
+    fillCarList(CARS)
+    const storageCarData = getDataFromLocalStorage()[0];
+    const storageOwnerData = getDataFromLocalStorage()[1];
+    const storagePriceData = getDataFromLocalStorage()[2];
+
+    if (storageCarData.id !== null) {
+      document.getElementById("form").classList.remove('disabled');
+
+      fillForm(storageCarData, storageOwnerData, storagePriceData)
+    }
+
+
+
+  };
   document.getElementById("buy-car").addEventListener("click", () => {
     showCarList();
     let selectCarAccessoriesToEmpty = document.getElementById("features-for-add")

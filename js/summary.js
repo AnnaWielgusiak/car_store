@@ -1,10 +1,11 @@
 const displaySummary = (car, owner, finalPrice) => {
  	// Acctive summary button
-	document.getElementById("summary-in-nav").classList.remove('disabled');
+ 	document.getElementById("summary-in-nav").classList.remove('disabled');
 
 	hide(document.getElementById('car-list'));
 	hide(document.getElementById('form-id'));
 	show(document.getElementById('summary'));
+	show(document.getElementById('summary-in-nav'));
 
 	document.getElementById("summary-in-nav").addEventListener("click", () => {
 		hide(document.getElementById('form-id'));
