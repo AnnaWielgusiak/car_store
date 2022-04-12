@@ -43,6 +43,8 @@
     }
     return result;
   };
+
+  // Creating and filling car-list
   const fillCarList = (cars) => {
     cars
       .map(carModal)
@@ -53,60 +55,11 @@
         carPair.forEach((car) => div.appendChild(car));
         return div;
       })
-      .forEach((div) => document.getElementById("car-list").appendChild(div));
+      .forEach((div) => carListDiv.appendChild(div));
   };
-
-  const showCarList = () => {
-    show(document.getElementById("car-list"));
-    hide(document.getElementById('form-id'));
-    hide(document.getElementById('summary'));
-  };
-
-  const emptySelectAccesorriesList = (selectToEmpty) => {
-    for (i = 0; i < selectToEmpty.options.length - 1; i++) {
-      selectToEmpty.remove(i);
-    }
-  }
-
-    document.getElementById("form").addEventListener("click", () => {
-      show(document.getElementById('form-id'));
-      hide(document.getElementById('car-list'));
-      hide(document.getElementById('summary'));
-    });
-
-  	document.getElementById("summary-in-nav").addEventListener("click", () => {
-  	  hide(document.getElementById('form-id'));
-  	  hide(document.getElementById('car-list'));
-  	  hide(document.getElementById('alert'));
-  	  show(document.getElementById('summary'));
-    });
-
-
 
   window.onload = () => {
-    fillCarList(CARS)
-    const storageCarData = getDataFromLocalStorage()[0];
-    const storageOwnerData = getDataFromLocalStorage()[1];
-    const storagePriceData = getDataFromLocalStorage()[2];
-
-    if (storageCarData.id !== null) {
-      document.getElementById("form").classList.remove('disabled');
-
-      fillForm(storageCarData, storageOwnerData, storagePriceData)
-    }
-
-
-
+    fillCarList(CARS);
   };
-  document.getElementById("buy-car").addEventListener("click", () => {
-    showCarList();
-    let selectCarAccessoriesToEmpty = document.getElementById("features-for-add")
-    let selectAccessoriesToEmpty = document.getElementById("feature-added")
-    if (selectCarAccessoriesToEmpty !== null) {
-      emptySelectAccesorriesList(selectCarAccessoriesToEmpty);
-    }
-    if (selectAccessoriesToEmpty !== null) {
-      emptySelectAccesorriesList(selectAccessoriesToEmpty);
-    }
-  });
+
 })();

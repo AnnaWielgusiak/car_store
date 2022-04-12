@@ -1,33 +1,20 @@
-const displaySummary = (car, owner, finalPrice) => {
- 	// Acctive summary button
- 	document.getElementById("summary-in-nav").classList.remove('disabled');
+const displaySummary = (car, financing, delivery, finalPrice) => {
 
-	hide(document.getElementById('car-list'));
-	hide(document.getElementById('form-id'));
-	show(document.getElementById('summary'));
-	show(document.getElementById('summary-in-nav'));
-
-	document.getElementById("summary-in-nav").addEventListener("click", () => {
-		hide(document.getElementById('form-id'));
-		hide(document.getElementById('car-list'));
-		hide(document.getElementById('alert'));
-		show(document.getElementById('summary'));
-	});
-
-	const finalCarChosenImage = document.getElementById("final-chosen-car-image");
+	// Fill summary fields
 	finalCarChosenImage.src = `${car.picture}`;
 	finalCarChosenImage.alt = `${car.brand} / ${car.model}`;
 	finalCarChosenImage.className = "chosen-car-image";
 
 	const finalChosenCarData = `${car.brand} / ${car.model}`;
-	document.getElementById("final-chosen-car-data").innerText = finalChosenCarData;
+	finalCarChosenData.innerText = finalChosenCarData;
 
-	const finalChosenFinancing = owner.financing;
-	document.getElementById("final-chosen-financing").innerText = finalChosenFinancing
+	finalChosenFinancing.innerText = financing;
 
-	const finalDelveryData = owner.delivery;
-	document.getElementById("final-delivery-data").innerText = finalDelveryData;
+	finalDeliveryData.innerText = delivery;
 
 	const finalPriceWithPLN = `${finalPrice} zł`
-	document.getElementById("final-price").innerText = finalPriceWithPLN;
+	finalCarPrice.innerText = finalPriceWithPLN;
+
+	// Acctive summary button
+	showSummaryDiv();
 }
