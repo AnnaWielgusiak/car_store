@@ -29,25 +29,6 @@ const checkedLeasing = document.getElementById("leasing");
 // coresponding to delivery
 const deliveryField = document.getElementById("delivery");
 
-// Car description
-const carDescriptionFun = (car) => {
-	const carBrandModelDescription = `${car.brand} / ${car.model}`;
-	const carYearDescription = `${car.year} rok`;
-	const carOdometerDescription = `${car.odometer} km`;
-	const carPowerDescription = `${car.power} KM`;
-	const carPriceDescription = `${car.price} zł`;
-	const carImageSource = `${car.picture}`;
-
-	return {
-		"carBrandModelDescription": carBrandModelDescription,
-		"carYearDescription": carYearDescription,
-		"carOdometerDescription": carOdometerDescription,
-		"carPowerDescription": carPowerDescription,
-		"carPriceDescription": carPriceDescription,
-		"carImageSource": carImageSource
-	};
-}
-
 // Buttons
 const addButton = document.getElementById("add");
 const deleteButton = document.getElementById("delete");

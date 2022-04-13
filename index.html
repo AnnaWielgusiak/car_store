@@ -16,6 +16,7 @@
 
     <script src="js/carMockData.js"></script>
     <script src="js/commons.js"></script>
+    <script src="js/localStorageManagment.js"></script>
 
     <link rel="stylesheet" href="style/style.css" />
     <link rel="stylesheet" href="style/carousel.css" />
@@ -294,7 +295,7 @@
             <label for="owner-data" class="main-form-labels">Imię i nazwisko:</label>
           </div>
           <div class="col">
-            <input type="text" id="name" />
+            <input type="text" id="name" onchange="saveName()" />
           </div>
         </div>
         <div class="row form-row">
@@ -307,7 +308,7 @@
               <label class="form-check-label" for="flexSwitchCheckChecked">Gotówka</label>
             </div>
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" role="switch" id="leasing" value="leasing" />
+              <input class="form-check-input" type="checkbox" role="switch" id="leasing" value="leasing" disabled />
               <label class="form-check-label" for="flexSwitchCheckDefault">Leasing</label>
             </div>
           </div>
@@ -367,19 +368,13 @@
     </div>
     <!-- End summary -->
 
+    <script src="js/carousel.js"></script>
     <script src="js/variables.js"></script>
     <script src="js/global.js"></script>
     <script src="js/navigation.js"></script>
     <script src="js/cars-list.js"></script>
     <script src="js/form.js"></script>
-
-
-    <script src="js/localStorageManagment.js"></script>
-    <script src="js/carousel.js"></script>
-
     <script src="js/summary.js"></script>
-
-
 
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"

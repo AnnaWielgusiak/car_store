@@ -1,20 +1,16 @@
-const displaySummary = (car, financing, delivery, finalPrice) => {
+const displaySummary = (finalCar, financing, delivery, finalPrice) => {
 
 	// Fill summary fields
-	finalCarChosenImage.src = `${car.picture}`;
-	finalCarChosenImage.alt = `${car.brand} / ${car.model}`;
-	finalCarChosenImage.className = "chosen-car-image";
-
-	const finalChosenCarData = `${car.brand} / ${car.model}`;
-	finalCarChosenData.innerText = finalChosenCarData;
-
+	finalCarDescription = carDescriptionFun(finalCar);
+	finalCarChosenImage.src = finalCarDescription.carImageSource;
+	finalCarChosenImage.alt = finalCarDescription.carBrandModelDescription;
+	finalCarChosenImage.classList.add("chosen-car-image");
+	finalCarChosenData.innerText = finalCarDescription.carBrandModelDescription;
 	finalChosenFinancing.innerText = financing;
-
 	finalDeliveryData.innerText = delivery;
-
-	const finalPriceWithPLN = `${finalPrice} zł`
-	finalCarPrice.innerText = finalPriceWithPLN;
+	finalCarPrice.innerText = `${finalPrice} zł`;
 
 	// Acctive summary button
 	showSummaryDiv();
+	window.localStorage.clear();
 }

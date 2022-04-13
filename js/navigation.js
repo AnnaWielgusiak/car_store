@@ -37,15 +37,6 @@ const removeOrAddDisabledClass = (navigationLink) => {
 // Action on the press buy-car link
 buyCarLink.addEventListener("click", () => {
 	showCarList();
-
-	// let selectCarAccessoriesToEmpty = document.getElementById("features-for-add")
-	// let selectAccessoriesToEmpty = document.getElementById("feature-added")
-	// if (selectCarAccessoriesToEmpty !== null) {
-	// 	emptySelectAccesorriesList(selectCarAccessoriesToEmpty);
-	// }
-	// if (selectAccessoriesToEmpty !== null) {
-	// 	emptySelectAccesorriesList(selectAccessoriesToEmpty);
-	// }
 });
 
 // Action on the press form-link

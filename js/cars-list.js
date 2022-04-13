@@ -60,6 +60,22 @@
 
   window.onload = () => {
     fillCarList(CARS);
+    const dataFromLocalStorage = getDataFromLocalStorage();
+    storageCar = dataFromLocalStorage.car;
+    carAccessories = dataFromLocalStorage.car.accessories;
+    possibleAccessories = dataFromLocalStorage.possibleAccessories;
+    chosenAccessories = dataFromLocalStorage.chosenAccessories;
+    storageOwner = dataFromLocalStorage.owner;
+    storageFinancing = dataFromLocalStorage.financing;
+    storageDelivery = dataFromLocalStorage.delivery;
+    storageFinalPrice = dataFromLocalStorage.storageFinalPrice;
+    if (storageCar.id !== 0) {
+      removeOrAddDisabledClass(formLink);
+      fillForm(storageCar, possibleAccessories, chosenAccessories, storageOwner, storageFinancing, storageFinalPrice);
+    } else {
+      window.localStorage.setItem("financing", "gotówka");
+    }
+    window.localStorage.setItem("delivery", deliveryData());
   };
 
 })();

@@ -1,89 +1,111 @@
-// Saving to localStorage
-const saveToLocalStorage = (car, owner, finalPrice) => {
-	window.localStorage.setItem('carId', JSON.stringify(car.id));
-	window.localStorage.setItem('carBrand', car.brand);
-	window.localStorage.setItem('carModel', car.model);
-	window.localStorage.setItem('carPrice', JSON.stringify(car.price));
-	window.localStorage.setItem('carYear', JSON.stringify(car.year));
-	window.localStorage.setItem('carOdometer', JSON.stringify(car.odometer));
-	window.localStorage.setItem('carPower', JSON.stringify(car.power));
-	window.localStorage.setItem('carPicture', car.picture);
+// localStorage - saving car data
+const saveCarDataToLocalStorage = (carData) => {
+	window.localStorage.setItem("carId", JSON.stringify(carData.id));
+	window.localStorage.setItem("carBrand", carData.brand);
+	window.localStorage.setItem("carModel", carData.model);
+	window.localStorage.setItem("carBasePrice", JSON.stringify(carData.price));
+	window.localStorage.setItem("carYear", JSON.stringify(carData.year));
+	window.localStorage.setItem("carOdometer", JSON.stringify(carData.odometer));
+	window.localStorage.setItem("carPower", JSON.stringify(carData.power));
+	window.localStorage.setItem("carBasePrice", JSON.stringify(carData.price));
+	window.localStorage.setItem("carPicture", carData.picture);
 
-	getSelectedOptions(car);
-
-	window.localStorage.setItem('ownerName', owner.name);
-	window.localStorage.setItem('ownerFinancing', owner.financing);
-	window.localStorage.setItem('ownerData', owner.delivery);
-
-	window.localStorage.setItem('finalPrice', JSON.stringify(finalPrice));
+	let carAccessories = carData.accessories;
+	savePossibleAccessoriesToLocalStorage(carAccessories);
 
 }
+
+// localStorage - saving possible accessories to localStorage
+const savePossibleAccessoriesToLocalStorage = (carAccessories) => {
+	let arrayItemsAccessories = [];
+	for (let i = 0; i < carAccessories.length; i++) {
+		arrayItemsAccessories.push(parseInt(carAccessories[i].id))
+		window.localStorage.setItem(`accessory0${arrayItemsAccessories[i]}Id`, JSON.stringify(carAccessories[arrayItemsAccessories[i] - 1].id));
+		window.localStorage.setItem(`accessory0${arrayItemsAccessories[i]}Name`, JSON.stringify(carAccessories[arrayItemsAccessories[i] - 1].name));
+		window.localStorage.setItem(`accessory0${arrayItemsAccessories[i]}Price`, JSON.stringify(carAccessories[arrayItemsAccessories[i] - 1].price));
+		window.localStorage.setItem(`accessory0${arrayItemsAccessories[i]}Chosen`, JSON.stringify(false));
+	};
+};
+
+// Save owner name
+const saveName = () => {
+	ownerName = getData(nameField);
+	window.localStorage.setItem("owner", ownerName);
+}
+
+// localStorage - getting data
 // Getting data from localStorage
 const getDataFromLocalStorage = () => {
 	let storageCar = {};
-	let storageOwner = {};
-	let storageAccessories = [];
-	let storagePrice;
-	storageCar.id = window.localStorage.getItem('carId');
+
+	storageCar.id = Number(window.localStorage.getItem('carId'));
 	storageCar.brand = window.localStorage.getItem('carBrand');
 	storageCar.model = window.localStorage.getItem('carModel');
-	storageCar.price = window.localStorage.getItem('carPrice');
-	storageCar.year = window.localStorage.getItem('carYear');
-	storageCar.odometer = window.localStorage.getItem('carOdometer');
-	storageCar.power = window.localStorage.getItem('carPower');
+	storageCar.price = Number(window.localStorage.getItem('carBasePrice'));
+	storageCar.year = Number(window.localStorage.getItem('carYear'));
+	storageCar.odometer = Number(window.localStorage.getItem('carOdometer'));
+	storageCar.power = Number(window.localStorage.getItem('carPower'));
 	storageCar.picture = window.localStorage.getItem('carPicture');
+	storageCar.accessories = getAccessoriesFromLocalStorage()[0];
+	possibleAccessories = getAccessoriesFromLocalStorage()[1];
+	chosenAccessories = getAccessoriesFromLocalStorage()[2];
 
-	for (i = 1; i <= 5; i++) {
-		let accessory = {};
-		accessory.id = i;
-		accessory.name = window.localStorage.getItem(`accessory${i}Name`);
-		accessory.price = window.localStorage.getItem(`accessory${i}Price`);
-		storageAccessories.push(accessory);
-	}
+	const storageOwner = window.localStorage.getItem('owner');
+	const storageFinancing = window.localStorage.getItem('financing');
 
-	storageCar.accessories = storageAccessories;
+	const storageFinalPrice = Number(window.localStorage.getItem('carFinalPrice'));
 
-	storageOwner.name = window.localStorage.getItem('ownerName');
-	storageOwner.financing = window.localStorage.getItem('ownerFinancing');
-	storageOwner.delivery = window.localStorage.getItem('ownerData');
+	return {
+		"car": storageCar,
+		"owner": storageOwner,
+		"financing": storageFinancing,
+		"storageFinalPrice": storageFinalPrice,
+		"possibleAccessories": possibleAccessories,
+		"chosenAccessories": chosenAccessories
+	};
+};
 
-	storagePrice = window.localStorage.getItem('finalPrice');
+const getAccessoriesFromLocalStorage = () => {
+	let storageAccessories = [];
+	let possibleAccessoriesToAdd = [];
+	let chosenAccessories = [];
+	for (let i = 1; i <= 5; i++) {
+		let storageAccessory = {};
+		storageAccessory.id = Number(window.localStorage.getItem(`accessory0${i}Id`));
+		storageAccessory.name = JSON.parse(window.localStorage.getItem(`accessory0${i}Name`));
+		storageAccessory.price = Number(window.localStorage.getItem(`accessory0${i}Price`));
+		storageAccessory.chosen = JSON.parse(window.localStorage.getItem(`accessory0${i}Chosen`));
+		if (storageAccessory.chosen === false) {
+			possibleAccessoriesToAdd.push(storageAccessory);
+		} else if (storageAccessory.chosen === true) {
+			chosenAccessories.push(storageAccessory);
+		};
 
-	return [storageCar, storageOwner, storagePrice];
-}
+		storageAccessories.push(storageAccessory);
+	};
+	return [storageAccessories, possibleAccessoriesToAdd, chosenAccessories]
+};
 
 // Filling fields after refreshing
-const fillForm = (storageCarData, storageOwnerData, storagePriceData) => {
-	document.getElementById("chosen-car-image").src = storageCarData.picture;
-	document.getElementById("chosen-car-image").alt = `${storageCarData.brand} / ${storageCarData.model}`;
-	document.getElementById("chosen-car-item").innerText = `${storageCarData.brand} / ${storageCarData.model}`;
-	document.getElementById("chosen-car-year").innerText = `${storageCarData.year} rok`;
-	document.getElementById("chosen-car-odometer").innerText = `${storageCarData.odometer} rok`;
-	document.getElementById("chosen-car-power").innerText = `${storageCarData.power} KM`;
-	document.getElementById("chosen-car-price").innerText = `${storagePriceData} zł`;
+const fillForm = (storageCar, possibleAccessories, chosenAccessories, storageOwner, storageFinancing, storageFinalPrice) => {
 
-	document.getElementById("name").value = `${storageOwnerData.name}`
+	storageCarDescription = carDescriptionFun(storageCar);
 
-	if (storageOwnerData.financing === "gotówka") {
-		document.getElementById("money").checked = true;
-		document.getElementById("leasing").checked = false;
-	} else {
-		document.getElementById("money").checked = false;
-		document.getElementById("leasing").checked = true;
-	}
+	carChosenImage.src = storageCarDescription.carImageSource;
+	carChosenImage.alt = storageCarDescription.carBrandModelDescription;
+	carItemChosen.innerText = storageCarDescription.carBrandModelDescription;
+	carYearChosen.innerText = storageCarDescription.carYearDescription;
+	carOdometerChosen.innerText = storageCarDescription.carOdometerDescription;
+	carPowerChosen.innerText = storageCarDescription.carPowerDescription;
+	carPriceChosen.innerText = `${storageFinalPrice} zł`;
+	addAccessoryLists(possibleAccessories, chosenAccessories, fieldForFeaturesForAdd, fieldForFeaturesAdded);
+	nameField.value = `${storageOwner}`;
 
-	document.getElementById("delivery").value = storageOwnerData.delivery;
-	document.getElementById("delivery").min = storageOwnerData.delivery;
-	document.getElementById("delivery").max = storageOwnerData.delivery;
-}
-
-
-const getSelectedOptions = (car) => {
-	let selectedOptionsList = Array.from(document.getElementById("feature-added").options).map(e => e.value);
-	let numSelectedOptions = [];
-	for (i = 0; i < selectedOptionsList.length; i++) {
-		numSelectedOptions.push(parseInt(selectedOptionsList[i]));
-		window.localStorage.setItem(`accessory${numSelectedOptions[i]}Name`, JSON.stringify(car.accessories[numSelectedOptions[i] - 1].name));
-		window.localStorage.setItem(`accessory${numSelectedOptions[i]}Price`, JSON.stringify(car.accessories[numSelectedOptions[i] - 1].price));
-	}
-}
+	if (storageFinancing === "gotówka") {
+		checkedMoney.checked = true;
+		checkedLeasing.checked = false;
+	} else if (storageFinancing === "leasing") {
+		checkedMoney.checked = false;
+		checkedLeasing.checked = true;
+	};
+};
