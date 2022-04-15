@@ -1,4 +1,4 @@
-/* 
+/*
 	price - PLN
 	odometer - kilometers
 	power - horsepower
@@ -374,4 +374,5 @@ const CARS = [
 			}
 		]
 	}
+
 ];

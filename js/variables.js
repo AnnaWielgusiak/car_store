@@ -34,6 +34,7 @@ const addButton = document.getElementById("add");
 const deleteButton = document.getElementById("delete");
 const buyButton = document.getElementById("buy");
 const backButton = document.getElementById("back");
+const searchButton = document.getElementById("search");
 
 // Field to fill in summary
 const finalCarChosenImage = document.getElementById("final-chosen-car-image");
@@ -41,3 +42,9 @@ const finalCarChosenData = document.getElementById("final-chosen-car-data");
 const finalChosenFinancing = document.getElementById("final-chosen-financing");
 const finalDeliveryData = document.getElementById("final-delivery-data");
 const finalCarPrice = document.getElementById("final-price");
+
+// Search form fields
+const brandField = document.getElementById("brand");
+const modelField = document.getElementById("model");
+const yearField = document.getElementById("dob-year");
+const priceField = document.getElementById("price");

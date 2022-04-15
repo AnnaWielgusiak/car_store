@@ -1,5 +1,5 @@
-(() => {
-  // Preparing div widt one car data
+const fillCarList = (() => {
+  // Preparing div with one car data
   const carModal = (car) => {
     const markup = /*html*/ `
       <div class="row car-box" id=${car.id} onclick = "displayFormWithCar(this)">
@@ -59,13 +59,20 @@
   };
 
   window.onload = () => {
-    fillCarList(CARS);
+    window.localStorage.removeItem("searchBrand");
+    window.localStorage.removeItem("searchModel");
     const dataFromLocalStorage = getDataFromLocalStorage();
     storageCar = dataFromLocalStorage.car;
     carAccessories = dataFromLocalStorage.car.accessories;
     possibleAccessories = dataFromLocalStorage.possibleAccessories;
     chosenAccessories = dataFromLocalStorage.chosenAccessories;
     storageOwner = dataFromLocalStorage.owner;
+    if (storageOwner !== null) {
+      storageOwner = dataFromLocalStorage.owner;
+    } else {
+      storageOwner = "";
+    };
+
     storageFinancing = dataFromLocalStorage.financing;
     storageDelivery = dataFromLocalStorage.delivery;
     storageFinalPrice = dataFromLocalStorage.storageFinalPrice;
@@ -78,4 +85,5 @@
     window.localStorage.setItem("delivery", deliveryData());
   };
 
+  return fillCarList;
 })();

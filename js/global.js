@@ -1,19 +1,12 @@
 // Car description
 const carDescriptionFun = (car) => {
-	const carBrandModelDescription = `${car.brand} / ${car.model}`;
-	const carYearDescription = `${car.year} rok`;
-	const carOdometerDescription = `${car.odometer} km`;
-	const carPowerDescription = `${car.power} KM`;
-	const carPriceDescription = `${car.price} zł`;
-	const carImageSource = `${car.picture}`;
-
 	return {
-		"carBrandModelDescription": carBrandModelDescription,
-		"carYearDescription": carYearDescription,
-		"carOdometerDescription": carOdometerDescription,
-		"carPowerDescription": carPowerDescription,
-		"carPriceDescription": carPriceDescription,
-		"carImageSource": carImageSource
+		"carBrandModelDescription": `${car.brand} / ${car.model}`,
+		"carYearDescription": `${car.year} rok`,
+		"carOdometerDescription": `${car.odometer} km`,
+		"carPowerDescription": `${car.power} KM`,
+		"carPriceDescription": `${car.price} zł`,
+		"carImageSource": `${car.picture}`
 	};
 };
 
@@ -21,18 +14,22 @@ const carDescriptionFun = (car) => {
 const addAccessoryLists = (possibleAccessories, chosenAccessories, fieldForFeaturesForAdd, fieldForFeaturesAdded) => {
 	fieldForFeaturesForAdd.innerHTML = "";
 	fieldForFeaturesAdded.innerHTML = "";
-	fieldForFeaturesForAdd.innerHTML = possibleAccessories.map(accessory => `<option value=${accessory.id}> ${accessory.name}: ${accessory.price} zł </option>`).join('');
-	fieldForFeaturesAdded.innerHTML = chosenAccessories.map(accessory => `<option value=${accessory.id}> ${accessory.name}: ${accessory.price} zł </option>`).join('');
+	fieldForFeaturesForAdd.innerHTML = possibleAccessories
+		.map(accessory => `<option value=${accessory.id}> ${accessory.name}: ${accessory.price} zł </option>`)
+		.join('');
+	fieldForFeaturesAdded.innerHTML = chosenAccessories
+		.map(accessory => `<option value=${accessory.id}> ${accessory.name}: ${accessory.price} zł </option>`)
+		.join('');
 }
 
 // Operation between lists of accessories
 // Adding and removing accessories and acctualisation of final price
 const createAccessory = (carAccessories, chosenAccessoryId) => {
-	const chosenAccessory = {};
-	chosenAccessory.id = carAccessories[chosenAccessoryId].id;
-	chosenAccessory.name = carAccessories[chosenAccessoryId].name;
-	chosenAccessory.price = carAccessories[chosenAccessoryId].price;
-	return chosenAccessory;
+	return {
+		id: carAccessories[chosenAccessoryId].id,
+		name: carAccessories[chosenAccessoryId].name,
+		price: carAccessories[chosenAccessoryId].price
+	}
 };
 
 const createOption = (accessory) => {
@@ -69,30 +66,17 @@ const addRemoveBeetwenList = (fieldFromRemoved, fieldWhereAdd, sign, carPriceCho
 };
 
 // Getting acctual price
-const gettingAcctualPrice = (carPriceChosen) => {
-	let acctualPrice;
-	acctualPrice = Number(carPriceChosen.textContent.slice(0, -3));
-	return acctualPrice;
-};
+const gettingAcctualPrice = (carPriceChosen) => Number(carPriceChosen.textContent.slice(0, -3));
 
 // Add and remove accessory
-addButton.addEventListener("click", () => {
-	fieldFromRemoved = fieldForFeaturesForAdd;
-	fieldWhereAdd = fieldForFeaturesAdded;
-	addRemoveBeetwenList(fieldFromRemoved, fieldWhereAdd, "plus", carPriceChosen);
+addButton.addEventListener("click", () => addRemoveBeetwenList(fieldForFeaturesForAdd, fieldForFeaturesAdded, "plus", carPriceChosen));
 
-});
-
-deleteButton.addEventListener("click", () => {
-	fieldWhereAdd = fieldForFeaturesForAdd;
-	fieldFromRemoved = fieldForFeaturesAdded;
-	addRemoveBeetwenList(fieldFromRemoved, fieldWhereAdd, "minus", carPriceChosen);
-});
+deleteButton.addEventListener("click", () => addRemoveBeetwenList(fieldForFeaturesAdded, fieldForFeaturesForAdd, "minus", carPriceChosen));
 
 // Get and check owner data
 const getData = (nameField) => (nameField).value.trim();
 
-
+// Check signs - unicode
 const printUnicodNumbersSignsToDel = () => {
 	let arrayOfSigns = [];
 	for (let i = 91; i < 97; i++) {
@@ -119,33 +103,15 @@ const checkNameSigns = (gettingName) => {
 	let signs = letters();
 
 	// Check if name is inncorect - sign
-	let positionOfSign = [];
-	for (let i = 0; i < gettingName.length; i++) {
-		if (signs.includes(gettingName[i]) === false) {
-			positionOfSign.push(i);
-		};
-	};
-	return positionOfSign;
+	return gettingName.split('').filter(name => !signs.includes(name));
 };
 
-const checkNameSpaces = (gettingName) => {
-	let positionOfSpaces = [];
-	for (let i = 0; i < gettingName.length; i++) {
-		if (gettingName[i] === " ") {
-			positionOfSpaces.push(i);
-		}
-	};
-	return positionOfSpaces;
-};
+const checkNameSpaces = (gettingName) => gettingName.split('').filter(sign => sign === " ");
 
 const checkName = (gettingName) => {
 	let signsInName = checkNameSigns(gettingName);
 	let spacesInName = checkNameSpaces(gettingName);
-	if (signsInName.length > 0 || spacesInName.length !== 1) {
-		return false;
-	} else {
-		return true;
-	};
+	return !(signsInName.length > 0 || spacesInName.length > 1);
 };
 
 const getAndCheckOwnerData = () => {
@@ -208,17 +174,7 @@ const changeValueToString = (value) => {
 
 const deliveryData = () => {
 	let today = new Date();
-	let year = today.getFullYear();
-	let month = today.getMonth() + 1;
-	let day = today.getDate() + 14;
-
-	let yearString = String(year);
-	let monthString = changeValueToString(month);
-	let dayString = changeValueToString(day);
-
-	let deliveryDay = `${yearString}-${monthString}-${dayString}`;
-
-	return deliveryDay;
+	return `${String(today.getFullYear())}-${changeValueToString(today.getMonth() + 1)}-${changeValueToString(today.getDate() + 14)}`;
 };
 
 //Filling delivery data
@@ -228,16 +184,14 @@ deliveryField.max = deliveryData();
 
 // Getting owner data and display summary
 buyButton.addEventListener("click", () => {
-	let finalPriceToGive = gettingAcctualPrice(carPriceChosen);
-	if (getAndCheckOwnerData() === null) {
+	if (!getAndCheckOwnerData()) {
 		showAlertDiv();
 		hide(summaryDiv);
 	} else {
-		displaySummary(storageCar, checkChoosinfFinancing(), deliveryData(), finalPriceToGive);
+		displaySummary(storageCar, checkChoosinfFinancing(), deliveryData(), gettingAcctualPrice(carPriceChosen));
+		window.localStorage.clear();
 	}
 });
 
 //Back to the car list
-backButton.addEventListener("click", () => {
-	showCarList();
-});
+backButton.addEventListener("click", () => showCarList());

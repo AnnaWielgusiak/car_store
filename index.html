@@ -170,55 +170,20 @@
           <form>
             <div>
               <label for="brands">Marka:</label>
-              <select class="btn brands" name="brands" title="brands">
-                <option value=""></option>
-                <option value="Audi">Audi</option>
-                <option value="BMW">BMW</option>
-                <option value="Fiat">Fiat</option>
-                <option value="Ford">Ford</option>
-                <option value="Mercedes">Mercedes</option>
-                <option value="Opel">Opel</option>
-                <option value="Renault">Renault</option>
-                <option value="Skoda">Skoda</option>
-                <option value="Toyota">Toyota</option>
-                <option value="Volkswagen">Volkswagen</option>
+              <select class="btn brands" name="brands" title="brands" id="brand">
               </select>
             </div>
             <div>
               <label for="model">Model:</label>
-              <input type="text" class="btn" id="model" name="model" />
+              <select class="btn" id="model" name="model"></select>
             </div>
             <div>
               <label for="datefield-year">Rok od:</label>
-              <select name="dob-year" class="btn datefield-year" title="dob-year">
-                <option value="2022">2022</option>
-                <option value="2021">2021</option>
-                <option value="2020">2020</option>
-                <option value="2019">2019</option>
-                <option value="2018">2018</option>
-                <option value="2017">2017</option>
-                <option value="2016">2016</option>
-                <option value="2015">2015</option>
-                <option value="2014">2014</option>
-                <option value="2013">2013</option>
-                <option value="2012">2012</option>
-                <option value="2011">2011</option>
-                <option value="2010">2010</option>
-                <option value="2009">2009</option>
-                <option value="2008">2008</option>
-                <option value="2007">2007</option>
-                <option value="2006">2006</option>
-                <option value="2005">2005</option>
-                <option value="2004">2004</option>
-                <option value="2003">2003</option>
-                <option value="2002">2002</option>
-                <option value="2001">2001</option>
-                <option value="2000">2000</option>
-                <option value="<1999">1999</option>
+              <select name="dob-year" class="btn datefield-year" title="dob-year" id="dob-year">
               </select>
             </div>
             <label for="price">Cena do:</label>
-            <select class="btn price" name="price" title="price">
+            <select class="btn price" name="price" title="price" id="price">
               <option value="5000">5000</option>
               <option value="10000">10000</option>
               <option value="15000">15000</option>
@@ -236,7 +201,7 @@
               <option value=">70000">bez limitu</option>
             </select>
             <div>
-              <input class="btn search-submit active" type="submit" value="Szukaj" />
+              <input class="btn search-submit active" type="button" value="Szukaj" id="search"/>
             </div>
           </form>
         </div>
@@ -373,6 +338,7 @@
     <script src="js/global.js"></script>
     <script src="js/navigation.js"></script>
     <script src="js/cars-list.js"></script>
+    <script src="js/searchField.js"></script>
     <script src="js/form.js"></script>
     <script src="js/summary.js"></script>
 

@@ -38,30 +38,22 @@ const saveName = () => {
 const getDataFromLocalStorage = () => {
 	let storageCar = {};
 
-	storageCar.id = Number(window.localStorage.getItem('carId'));
-	storageCar.brand = window.localStorage.getItem('carBrand');
-	storageCar.model = window.localStorage.getItem('carModel');
-	storageCar.price = Number(window.localStorage.getItem('carBasePrice'));
-	storageCar.year = Number(window.localStorage.getItem('carYear'));
-	storageCar.odometer = Number(window.localStorage.getItem('carOdometer'));
-	storageCar.power = Number(window.localStorage.getItem('carPower'));
-	storageCar.picture = window.localStorage.getItem('carPicture');
-	storageCar.accessories = getAccessoriesFromLocalStorage()[0];
-	possibleAccessories = getAccessoriesFromLocalStorage()[1];
-	chosenAccessories = getAccessoriesFromLocalStorage()[2];
-
-	const storageOwner = window.localStorage.getItem('owner');
-	const storageFinancing = window.localStorage.getItem('financing');
-
-	const storageFinalPrice = Number(window.localStorage.getItem('carFinalPrice'));
+	storageCar.id = Number(window.localStorage.getItem("carId"));
+	storageCar.brand = window.localStorage.getItem("carBrand");
+	storageCar.model = window.localStorage.getItem("carModel");
+	storageCar.price = Number(window.localStorage.getItem("carBasePrice"));
+	storageCar.year = Number(window.localStorage.getItem("carYear"));
+	storageCar.odometer = Number(window.localStorage.getItem("carOdometer"));
+	storageCar.power = Number(window.localStorage.getItem("carPower"));
+	storageCar.picture = window.localStorage.getItem("carPicture");
 
 	return {
 		"car": storageCar,
-		"owner": storageOwner,
-		"financing": storageFinancing,
-		"storageFinalPrice": storageFinalPrice,
-		"possibleAccessories": possibleAccessories,
-		"chosenAccessories": chosenAccessories
+		"owner": window.localStorage.getItem("owner"),
+		"financing": window.localStorage.getItem("financing"),
+		"storageFinalPrice": Number(window.localStorage.getItem("carFinalPrice")),
+		"possibleAccessories": getAccessoriesFromLocalStorage()[1],
+		"chosenAccessories": getAccessoriesFromLocalStorage()[2]
 	};
 };
 
@@ -75,9 +67,10 @@ const getAccessoriesFromLocalStorage = () => {
 		storageAccessory.name = JSON.parse(window.localStorage.getItem(`accessory0${i}Name`));
 		storageAccessory.price = Number(window.localStorage.getItem(`accessory0${i}Price`));
 		storageAccessory.chosen = JSON.parse(window.localStorage.getItem(`accessory0${i}Chosen`));
-		if (storageAccessory.chosen === false) {
+
+		if (!storageAccessory.chosen) {
 			possibleAccessoriesToAdd.push(storageAccessory);
-		} else if (storageAccessory.chosen === true) {
+		} else if (storageAccessory) {
 			chosenAccessories.push(storageAccessory);
 		};
 

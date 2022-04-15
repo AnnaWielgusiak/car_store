@@ -24,5 +24,4 @@ const displayFormWithCar = (carItem) => {
 
   // Acctive form in navigation and form field;
   showFormDiv();
-
-}
+};
