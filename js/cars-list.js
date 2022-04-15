@@ -61,6 +61,8 @@ const fillCarList = (() => {
   window.onload = () => {
     window.localStorage.removeItem("searchBrand");
     window.localStorage.removeItem("searchModel");
+    window.localStorage.removeItem("searchYear");
+    window.localStorage.removeItem("searchPrice");
     const dataFromLocalStorage = getDataFromLocalStorage();
     storageCar = dataFromLocalStorage.car;
     carAccessories = dataFromLocalStorage.car.accessories;

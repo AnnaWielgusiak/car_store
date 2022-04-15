@@ -1,47 +1,34 @@
+let carsBrand;
+let carsModel;
+let carsYear;
+let carsPrice;
+
 // Getting value of field
 const getValue = (field) => (field).value;
 
 // File brands list
-const getBrandsFromArray = (carsList) => {
-	let arrayOfBrand = [];
-	arrayOfBrand[0] = " ";
-	for (let i = 0; i < carsList.length; i++) {
-		if (arrayOfBrand.includes(carsList[i].brand) === false) {
-			arrayOfBrand.push(carsList[i].brand);
-		};
-	};
-	return arrayOfBrand.sort();
-
+const getBrands = (carsList) => {
+	let arrayOfBrands = [];
+	arrayOfBrands[0] = " ";
+	carsList.forEach(car => arrayOfBrands.push(car.brand));
+	return [... new Set(arrayOfBrands.sort())];
 };
 
-const brands = getBrandsFromArray(CARS);
+const brands = getBrands(CARS);
 brandField.innerHTML = brands.map(brand => `<option value=${brand}>${brand}</option>`).join('');
 
-// Searching cars after chosed brand
-const getCarsOfSearchedType = (carsList, searchBrand) => carsList.filter(car => car.brand === searchBrand);
-
-// File model list
-const getModelsFromArray = (carsList) => {
+const getModels = (carsList) => {
 	let arrayOfModels = [];
 	arrayOfModels[0] = " ";
-	for (let i = 0; i < carsList.length; i++) {
-		if (arrayOfModels.includes(carsList[i].model) === false) {
-			arrayOfModels.push(carsList[i].model);
-		};
-	};
-	return arrayOfModels.sort();
+	carsList.forEach(car => arrayOfModels.push(car.model));
+	return [...new Set(arrayOfModels.sort())];
 };
 
+// Searching cars after chosed brand
+const getCarsOfSearchedBrand = (carsList, searchBrand) => carsList.filter(car => car.brand === searchBrand);
+
 // Searching cars after chosed model
-const getCarsOfSearchedModel = (carsList, searchModel) => {
-	let carsOfType = [];
-	for (let i = 0; i < carsList.length; i++) {
-		if (carsList[i].model === searchModel) {
-			carsOfType.push(carsList[i]);
-		};
-	};
-	return carsOfType;
-};
+const getCarsOfSearchedModel = (carsList, searchModel) => carsList.filter(car => car.model === searchModel);
 
 // File year list
 const fillYearList = () => {
@@ -50,43 +37,83 @@ const fillYearList = () => {
 	let arrayOfYears = [];
 	arrayOfYears[0] = " ";
 	arrayOfYears[1] = start;
-	for (let i = 2; i <= start - end; i++) {
+	for (let i = 1; i <= start - end; i++) {
 		arrayOfYears.push(start - i);
-	}
+	};
 	arrayOfYears[start - end] = `starsze od ${end}`
 	return arrayOfYears;
-}
+};
 
 years = fillYearList();
 yearField.innerHTML = years.map(year => `<option value=${year}>${year}</option>`).join('');
 
 // Searching cars after chosed year
 const getCarsOfSearchedYear = (carsList, searchYear) => {
-	let carsOfType = [];
 	if (searchYear === "starsze") {
-		for (let i = 0; i < carsList.length; i++) {
-			if (carsList[i].year < 1999) {
-				carsOfType.push(carsList[i]);
-			};
-		};
-		// return carsList.filter(car => car.year < 1999);
+		return carsList.filter(car => car.year < 1999);
 	} else {
-		for (let i = 0; i < carsList.length; i++) {
-			if (carsList[i].year > searchYear) {
-				carsOfType.push(carsList[i]);
-			}
-		}
-		// return carsList.filter(car => car.year > searchYear);
-	};
-	return carsOfType;
+		return carsList.filter(car => car.year >= searchYear);
+	}
+};
+
+const filterByYear = (searchYear) => {
+	if (!searchYear) {
+		return car => true;
+	}
+	if (searchYear === "starsze") {
+		return car => car.year < 1999;
+	} else {
+		return car => car.year >= searchYear;
+	}
+};
+
+// File price list
+const fillPriceList = () => {
+	const end = 70000;
+	const start = 5000;
+	const step = 5000;
+	const arrayLength = Math.floor(((end - start) / step));
+	const range = [...Array(arrayLength).keys()].map(x => (x * step) + start);
+
+	range[end - start] = `droższe niż ${end}`
+
+	return range;
+}
+
+price = fillPriceList();
+priceField.innerHTML = price.map(price => `<option value=${price}>${price}</option>`).join('');
+
+// Searching cars after chosed price
+const getCarsOfSearchedPrice = (carsList, searchPrice) => {
+	if (searchPrice === "droższe") {
+		return carsList.filter(car => car.price > 70000);
+	} else {
+		return carsList.filter(car => car.price < searchPrice);
+	}
+};
+
+const filterByPrice = (searchPrice) => {
+	if (!searchPrice) {
+		return car => true;
+	}
+	if (searchPrice === "droższe") {
+		return car => car.price > 70000;
+	} else {
+		return car => car.price < searchPrice;
+	}
 };
 
 // Getting value of searched brand
 brandField.addEventListener("change", () => {
-	let searchedBrand = getValue(brandField);
-	window.localStorage.setItem("searchBrand", JSON.stringify(searchedBrand));
-	carsBrand = getCarsOfSearchedType(CARS, searchedBrand);
-	const models = getModelsFromArray(carsBrand);
+	const searchedBrand = getValue(brandField);
+	if (searchedBrand === "") {
+		window.localStorage.removeItem("searchBrand");
+		window.localStorage.removeItem("searchModel");
+	} else {
+		window.localStorage.setItem("searchBrand", JSON.stringify(searchedBrand));
+	}
+	carsBrand = getCarsOfSearchedBrand(CARS, searchedBrand);
+	const models = getModels(carsBrand);
 	modelField.innerHTML = models.map(model => `<option value=${model}>${model}</option>`).join('');
 
 });
@@ -94,14 +121,40 @@ brandField.addEventListener("change", () => {
 // Getting value of searched model
 modelField.addEventListener("change", () => {
 	let searchedModel = getValue(modelField);
-	window.localStorage.setItem("searchModel", JSON.stringify(searchedModel));
+	if (searchedModel === "") {
+		window.localStorage.removeItem("searchModel");
+	} else {
+		window.localStorage.setItem("searchModel", JSON.stringify(searchedModel));
+	}
 });
 
 // Getting value of searched year
 yearField.addEventListener("change", () => {
 	let searchedYear = getValue(yearField);
-	window.localStorage.setItem("searchYear", JSON.stringify(searchedYear));
+	if (searchedYear === "") {
+		window.localStorage.removeItem("searchYear");
+	} else {
+		window.localStorage.setItem("searchYear", JSON.stringify(searchedYear));
+	}
 });
+
+// Getting value of searched price
+priceField.addEventListener("change", () => {
+	let searchedPrice = getValue(priceField);
+	if (searchedPrice === "") {
+		window.localStorage.removeItem("searchPrice");
+	} else {
+		window.localStorage.setItem("searchPrice", JSON.stringify(searchedPrice));
+	}
+});
+
+const getCarsToDisplay = (brandFilter, modelFilter, yearFilter, priceFilter) => {
+	return CARS
+		.filter(brandFilter)
+		.filter(modelFilter)
+		.filter(yearFilter)
+		.filter(priceFilter)
+}
 
 
 // Search button
@@ -109,25 +162,58 @@ searchButton.addEventListener("click", () => {
 	let searchBrand = JSON.parse(window.localStorage.getItem("searchBrand"));
 	let searchModel = JSON.parse(window.localStorage.getItem("searchModel"));
 	let searchYear = JSON.parse(window.localStorage.getItem("searchYear"));
-	let carsBrand;
-	let carsModel;
-	let carsYear;
+	let searchPrice = JSON.parse(window.localStorage.getItem("searchPrice"));
+
 	carListDiv.innerHTML = "";
-	if (searchBrand !== null && searchModel === null && searchYear === null) {
-		carsBrand = getCarsOfSearchedType(CARS, searchBrand);
-		fillCarList(carsBrand);
-	} else if (searchBrand !== null && searchModel !== null && searchYear === null) {
-		carsBrand = getCarsOfSearchedType(CARS, searchBrand);
-		carsModel = getCarsOfSearchedModel(carsBrand, searchModel);
-		fillCarList(carsModel);
-	} else if (searchBrand !== null && searchModel === null && searchYear !== null) {
-		carsBrand = getCarsOfSearchedType(CARS, searchBrand);
-		carsYear = getCarsOfSearchedYear(carsBrand, searchYear);
-	} else if (searchBrand === null && searchModel === null && searchYear !== null) {
-		carsYear = getCarsOfSearchedYear(CARS, searchYear);
-		fillCarList(carsYear);
-	} else {
-		fillCarList(CARS);
-	};
+
+	const carsToDisplay = getCarsToDisplay(
+		car => !searchBrand || car.brand === searchBrand,
+		car => !searchModel || car.model === searchModel,
+		filterByYear(searchYear),
+		filterByPrice(searchPrice)
+	);
+	fillCarList(carsToDisplay);
 	showCarList();
+
+
+	// if (searchBrand && !searchModel && !searchYear && !searchPrice) {
+	// 	carsBrand = getCarsOfSearchedBrand(CARS, searchBrand);
+	// 	fillCarList(carsBrand);
+	// } else if (searchBrand && searchModel && !searchYear && !searchPrice) {
+	// 	carsBrand = getCarsOfSearchedBrand(CARS, searchBrand);
+	// 	carsModel = getCarsOfSearchedModel(carsBrand, searchModel);
+	// 	fillCarList(carsModel);
+	// } else if (searchBrand && searchModel && searchYear && !searchPrice) {
+	// 	carsBrand = getCarsOfSearchedBrand(CARS, searchBrand);
+	// 	carsModel = getCarsOfSearchedModel(carsBrand, searchModel);
+	// 	carsYear = getCarsOfSearchedYear(carsModel, searchYear);
+	// 	fillCarList(carsYear);
+	// } else if (searchBrand && searchModel && searchYear && searchPrice) {
+	// 	carsBrand = getCarsOfSearchedBrand(CARS, searchBrand);
+	// 	carsModel = getCarsOfSearchedModel(carsBrand, searchModel);
+	// 	carsYear = getCarsOfSearchedYear(carsModel, searchYear);
+	// 	carsPrice = getCarsOfSearchedPrice(carsYear, searchPrice);
+	// 	fillCarList(carsPrice);
+	// } else if (!searchBrand && !searchModel && searchYear && !searchPrice) {
+	// 	carsYear = getCarsOfSearchedYear(CARS, searchYear);
+	// 	fillCarList(carsYear);
+	// } else if (!searchBrand && !searchModel && searchYear && searchPrice) {
+	// 	carsYear = getCarsOfSearchedYear(CARS, searchYear);
+	// 	carsPrice = getCarsOfSearchedPrice(carsYear, carsPrice)
+	// 	fillCarList(carsPrice);
+	// } else if (!searchBrand && !searchModel && !searchYear && searchPrice) {
+	// 	carsPrice = getCarsOfSearchedPrice(CARS, searchPrice)
+	// 	fillCarList(carsPrice);
+	// } else if (searchBrand && !searchModel && !searchYear && searchPrice) {
+	// 	carsBrand = getCarsOfSearchedBrand(CARS, searchBrand);
+	// 	carsPrice = getCarsOfSearchedPrice(carsBrand, searchPrice);
+	// 	fillCarList(carsPrice);
+	// } else if (searchBrand && !searchModel && searchYear && !searchPrice) {
+	// 	carsBrand = getCarsOfSearchedBrand(CARS, searchBrand);
+	// 	carsYear = getCarsOfSearchedYear(carsBrand, searchYear);
+	// 	carsPrice = getCarsOfSearchedPrice(carsYear, searchPrice);
+	// } else {
+	// 	fillCarList(CARS);
+	// }
+	// showCarList();
 });
