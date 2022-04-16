@@ -1,8 +1,3 @@
-let carsBrand;
-let carsModel;
-let carsYear;
-let carsPrice;
-
 // Getting value of field
 const getValue = (field) => (field).value;
 
@@ -24,12 +19,6 @@ const getModels = (carsList) => {
 	return [...new Set(arrayOfModels.sort())];
 };
 
-// Searching cars after chosed brand
-const getCarsOfSearchedBrand = (carsList, searchBrand) => carsList.filter(car => car.brand === searchBrand);
-
-// Searching cars after chosed model
-const getCarsOfSearchedModel = (carsList, searchModel) => carsList.filter(car => car.model === searchModel);
-
 // File year list
 const fillYearList = () => {
 	const end = 1999;
@@ -48,14 +37,6 @@ years = fillYearList();
 yearField.innerHTML = years.map(year => `<option value=${year}>${year}</option>`).join('');
 
 // Searching cars after chosed year
-const getCarsOfSearchedYear = (carsList, searchYear) => {
-	if (searchYear === "starsze") {
-		return carsList.filter(car => car.year < 1999);
-	} else {
-		return carsList.filter(car => car.year >= searchYear);
-	}
-};
-
 const filterByYear = (searchYear) => {
 	if (!searchYear) {
 		return car => true;
@@ -75,22 +56,13 @@ const fillPriceList = () => {
 	const arrayLength = Math.floor(((end - start) / step));
 	const range = [...Array(arrayLength).keys()].map(x => (x * step) + start);
 
-	range[end - start] = `droższe niż ${end}`
+	range[end - start] = `droższe niż ${end}`;
 
 	return range;
 }
 
 price = fillPriceList();
 priceField.innerHTML = price.map(price => `<option value=${price}>${price}</option>`).join('');
-
-// Searching cars after chosed price
-const getCarsOfSearchedPrice = (carsList, searchPrice) => {
-	if (searchPrice === "droższe") {
-		return carsList.filter(car => car.price > 70000);
-	} else {
-		return carsList.filter(car => car.price < searchPrice);
-	}
-};
 
 const filterByPrice = (searchPrice) => {
 	if (!searchPrice) {
@@ -154,8 +126,7 @@ const getCarsToDisplay = (brandFilter, modelFilter, yearFilter, priceFilter) => 
 		.filter(modelFilter)
 		.filter(yearFilter)
 		.filter(priceFilter)
-}
-
+};
 
 // Search button
 searchButton.addEventListener("click", () => {
@@ -172,48 +143,11 @@ searchButton.addEventListener("click", () => {
 		filterByYear(searchYear),
 		filterByPrice(searchPrice)
 	);
-	fillCarList(carsToDisplay);
-	showCarList();
 
-
-	// if (searchBrand && !searchModel && !searchYear && !searchPrice) {
-	// 	carsBrand = getCarsOfSearchedBrand(CARS, searchBrand);
-	// 	fillCarList(carsBrand);
-	// } else if (searchBrand && searchModel && !searchYear && !searchPrice) {
-	// 	carsBrand = getCarsOfSearchedBrand(CARS, searchBrand);
-	// 	carsModel = getCarsOfSearchedModel(carsBrand, searchModel);
-	// 	fillCarList(carsModel);
-	// } else if (searchBrand && searchModel && searchYear && !searchPrice) {
-	// 	carsBrand = getCarsOfSearchedBrand(CARS, searchBrand);
-	// 	carsModel = getCarsOfSearchedModel(carsBrand, searchModel);
-	// 	carsYear = getCarsOfSearchedYear(carsModel, searchYear);
-	// 	fillCarList(carsYear);
-	// } else if (searchBrand && searchModel && searchYear && searchPrice) {
-	// 	carsBrand = getCarsOfSearchedBrand(CARS, searchBrand);
-	// 	carsModel = getCarsOfSearchedModel(carsBrand, searchModel);
-	// 	carsYear = getCarsOfSearchedYear(carsModel, searchYear);
-	// 	carsPrice = getCarsOfSearchedPrice(carsYear, searchPrice);
-	// 	fillCarList(carsPrice);
-	// } else if (!searchBrand && !searchModel && searchYear && !searchPrice) {
-	// 	carsYear = getCarsOfSearchedYear(CARS, searchYear);
-	// 	fillCarList(carsYear);
-	// } else if (!searchBrand && !searchModel && searchYear && searchPrice) {
-	// 	carsYear = getCarsOfSearchedYear(CARS, searchYear);
-	// 	carsPrice = getCarsOfSearchedPrice(carsYear, carsPrice)
-	// 	fillCarList(carsPrice);
-	// } else if (!searchBrand && !searchModel && !searchYear && searchPrice) {
-	// 	carsPrice = getCarsOfSearchedPrice(CARS, searchPrice)
-	// 	fillCarList(carsPrice);
-	// } else if (searchBrand && !searchModel && !searchYear && searchPrice) {
-	// 	carsBrand = getCarsOfSearchedBrand(CARS, searchBrand);
-	// 	carsPrice = getCarsOfSearchedPrice(carsBrand, searchPrice);
-	// 	fillCarList(carsPrice);
-	// } else if (searchBrand && !searchModel && searchYear && !searchPrice) {
-	// 	carsBrand = getCarsOfSearchedBrand(CARS, searchBrand);
-	// 	carsYear = getCarsOfSearchedYear(carsBrand, searchYear);
-	// 	carsPrice = getCarsOfSearchedPrice(carsYear, searchPrice);
-	// } else {
-	// 	fillCarList(CARS);
-	// }
-	// showCarList();
+	if (carsToDisplay.length === 0) {
+		alert("Żaden z samochodów w bazie nie spełnia podanych kryteriów")
+	} else {
+		fillCarList(carsToDisplay);
+		showCarList();
+	}
 });
