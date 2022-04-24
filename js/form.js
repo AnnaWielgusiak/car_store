@@ -1,6 +1,7 @@
 const displayFormWithCar = (carItem) => {
 
   const carChosen = CARS[carItem.id - 1];
+  storageCar = carChosen;
 
   // Car data
   let carAccessories = carChosen.accessories;
