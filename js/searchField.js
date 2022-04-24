@@ -26,7 +26,7 @@ const fillYearList = () => {
 	let arrayOfYears = [];
 	arrayOfYears[0] = " ";
 	arrayOfYears[1] = start;
-	for (let i = 1; i <= start - end; i++) {
+	for (let i = 1; i <= start - end-1; i++) {
 		arrayOfYears.push(start - i);
 	};
 	arrayOfYears[start - end] = `starsze od ${end}`

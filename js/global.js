@@ -174,7 +174,10 @@ const changeValueToString = (value) => {
 
 const deliveryData = () => {
 	let today = new Date();
-	return `${String(today.getFullYear())}-${changeValueToString(today.getMonth() + 1)}-${changeValueToString(today.getDate() + 14)}`;
+	let twoWeeks = new Date();
+	twoWeeks.setDate(today.getDate() + 14);
+
+	return `${String(twoWeeks.getFullYear())}-${changeValueToString(twoWeeks.getMonth()+1)}-${changeValueToString(twoWeeks.getDate())}`;
 };
 
 //Filling delivery data
