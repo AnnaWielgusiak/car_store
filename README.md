@@ -76,6 +76,6 @@ Carousel inspirated by:
 
 Brand logos are used only in learn purpose - non commercial
 
-## Other informations
+## Other information
 Webside was created for realisation one of projects on studies of faculty Frontend developer with Angular last on WSB University in Wrocław in 2021/2022 year.
 
