@@ -62,7 +62,7 @@ const fillCarList = (() => {
     window.localStorage.removeItem("searchBrand");
     window.localStorage.removeItem("searchModel");
     window.localStorage.removeItem("searchYear");
-    window.localStorage.removeItem("searchPrice");
+    window.localStorage.setItem("searchPrice", JSON.stringify('5000'));
     const dataFromLocalStorage = getDataFromLocalStorage();
     storageCar = dataFromLocalStorage.car;
     carAccessories = dataFromLocalStorage.car.accessories;

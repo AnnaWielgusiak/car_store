@@ -76,7 +76,7 @@
 
       <!-- Footer -->
       <div class="text-footer caption">
-        <p>© Copyright by Anna Wielgusiak</p>
+        <p>Created by Anna Wielgusiak</p>
       </div>
     </div>
     <!-- End HOME -->
@@ -168,25 +168,27 @@
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
           <form>
-            <div>
-              <label for="brands">Marka:</label>
-              <select class="btn brands" name="brands" title="brands" id="brand">
+            <div class="search">
+              <label class="label-search" for="brands">Marka:</label>
+              <select class="btn brands field-search" name="brands" title="brands" id="brand">
               </select>
             </div>
-            <div>
-              <label for="model">Model:</label>
-              <select class="btn" id="model" name="model"></select>
+            <div class="search">
+              <label class="label-search" for="model">Model:</label>
+              <select class="btn field-search" id="model" name="model"></select>
             </div>
-            <div>
-              <label for="datefield-year">Rok od:</label>
-              <select name="dob-year" class="btn datefield-year" title="dob-year" id="dob-year">
+            <div class="search">
+              <label class="label-search" for="datefield-year">Rok od:</label>
+              <select name="dob-year" class="btn datefield-year field-search" title="dob-year" id="dob-year">
               </select>
             </div>
-            <label for="price">Cena do:</label>
-            <select class="btn price" name="price" title="price" id="price">
-            </select>
-            <div>
-              <input class="btn search-submit active" type="button" value="Szukaj" id="search"/>
+            <div class="search">
+              <label class="label-search" for="price">Cena do:</label>
+              <select class="btn price field-search" name="price" title="price" id="price">
+              </select>
+            </div>
+            <div class="search">
+              <input class="btn search-submit active field-search" type="button" value="Szukaj" id="search"/>
             </div>
           </form>
         </div>

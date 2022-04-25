@@ -12,6 +12,8 @@ const getBrands = (carsList) => {
 const brands = getBrands(CARS);
 brandField.innerHTML = brands.map(brand => `<option value=${brand}>${brand}</option>`).join('');
 
+const getCarsOfSearchedBrand = (carsList, searchBrand) => carsList.filter(car => car.brand === searchBrand);
+
 const getModels = (carsList) => {
 	let arrayOfModels = [];
 	arrayOfModels[0] = " ";
@@ -113,11 +115,7 @@ yearField.addEventListener("change", () => {
 // Getting value of searched price
 priceField.addEventListener("change", () => {
 	let searchedPrice = getValue(priceField);
-	if (searchedPrice === "") {
-		window.localStorage.removeItem("searchPrice");
-	} else {
-		window.localStorage.setItem("searchPrice", JSON.stringify(searchedPrice));
-	}
+	window.localStorage.setItem("searchPrice", JSON.stringify(searchedPrice));
 });
 
 const getCarsToDisplay = (brandFilter, modelFilter, yearFilter, priceFilter) => {

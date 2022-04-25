@@ -12,11 +12,11 @@
     color: white
 }
 
-.brand-image {   
+.brand-image {
     max-height: 20vh;
     min-height: 20vh;
     object-fit: contain;
-    vertical-align: middle; 
+    vertical-align: middle;
 
 }
 
@@ -29,13 +29,11 @@ figure {
     width: 25vw;
     font-size: 16px;
   }
-  
+
   figcaption {
     text-align: center;
     margin: 10px auto;
   }
-
-  
 
 .carousel-control-prev {
     margin-left: -10%;
@@ -62,20 +60,20 @@ figure {
 
 /* medium and up screens */
 @media (min-width: 768px) {
-    
+
     .carousel-inner .carousel-item-end.active,
     .carousel-inner .carousel-item-next {
       transform: translateX(33%);
     }
-    
-    .carousel-inner .carousel-item-start.active, 
+
+    .carousel-inner .carousel-item-start.active,
     .carousel-inner .carousel-item-prev {
       transform: translateX(-33%);
     }
 }
 
 .carousel-inner .carousel-item-end,
-.carousel-inner .carousel-item-start { 
+.carousel-inner .carousel-item-start {
   transform: translateX(0);
 }
 
