@@ -55,6 +55,9 @@ Project for develop. Points which need to be add:
 Icons:
 * https://www.flaticon.com/search?word=pointer&order_by=4&type=icon
 * https://www.flaticon.com/search?word=phone&order_by=4&type=icon
+* https://www.flaticon.com/free-icon/calendar_4744824#
+* https://www.flaticon.com/free-icon/speedometer_3564796?term=odometer&page=1&position=4&page=1&position=4&related_id=3564796&origin=search
+* https://www.flaticon.com/free-icon/energy_25018?term=power&page=1&position=5&page=1&position=5&related_id=25018&origin=search
 
 Movie:
 https://www.pexels.com/pl-pl/video/natura-wakacje-woda-chmury-5418124/
