@@ -1,5 +1,5 @@
 # car_store - Kup auto
-Webside for buing car
+Webside for buing car - https://annawielgusiak.github.io/car_store/
 
 ## Table of contents
 * [General info](#general-info)
