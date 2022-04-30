@@ -84,7 +84,7 @@ deleteButton.addEventListener("click", () => addRemoveBeetwenList(fieldForFeatur
 const getData = (nameField) => (nameField).value.trim();
 
 // Check signs - unicode
-const firstNameLastNameRegex = /[A-ZŻŹĆĄŚĘŁÓŃ]{1}[a-zżźćńółęąś]+ [A-ZŻŹĆĄŚĘŁÓŃ]{1}[a-zżźćńółęąś]+/;
+const firstNameLastNameRegex = /^[A-ZŻŹĆĄŚĘŁÓŃ]{1}[a-zżźćńółęąś]+ [A-ZŻŹĆĄŚĘŁÓŃ]{1}[a-zżźćńółęąś]+$/;
 
 const checkName = (gettingName) => firstNameLastNameRegex.test(gettingName);
 
