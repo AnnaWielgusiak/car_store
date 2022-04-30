@@ -1,33 +1,39 @@
 const showCarList = () => {
-	show(carListDiv);
-	carListDiv.scrollIntoView();
-	hide(formDiv);
-	hide(alertDiv);
-	hide(summaryDiv);
+	show(carouselSection);
+	show(carListSection);
+	carListSection.scrollIntoView();
+	hide(formSection);
+	hide(alertSection);
+	hide(summarySection);
 };
 
-const showFormDiv = () => {
-	hide(carListDiv);
-	show(formDiv);
-	formDiv.scrollIntoView();
-	hide(alertDiv);
-	hide(summaryDiv);
+const showFormSection = () => {
+	hide(carouselSection);
+	hide(carListSection);
+	show(formSection);
+	formSection.scrollIntoView();
+	hide(alertSection);
+	hide(summarySection);
 	removeOrAddDisabledClass(formLink);
 };
 
-const showAlertDiv = () => {
-	hide(carListDiv);
-	show(formDiv);
-	show(alertDiv);
-	hide(summaryDiv);
+const showAlertSection = () => {
+	hide(carouselSection);
+	hide(carListSection);
+	show(formSection);
+	show(alertSection);
+	alertSection.scrollIntoView();
+	hide(summarySection);
 };
 
-const showSummaryDiv = () => {
-	hide(carListDiv);
-	hide(formDiv);
-	hide(alertDiv);
-	show(summaryDiv);
-	summaryDiv.scrollIntoView();
+const showSummarySection = () => {
+	hide(carouselSection);
+	hide(carListSection);
+	hide(formSection);
+	hide(alertSection);
+	hide(carouselSection);
+	show(summarySection);
+	summarySection.scrollIntoView();
 	removeOrAddDisabledClass(summaryLink);
 };
 
@@ -39,13 +45,13 @@ const removeOrAddDisabledClass = (navigationLink) => {
 
 // Action on the press buy-car link
 buyCarLink.addEventListener("click", () => {
-	carListDiv.innerHTML = "";
+	carListSection.innerHTML = "";
 	fillCarList(CARS);
 	showCarList();
 });
 
 // Action on the press form-link
-formLink.addEventListener("click", () => showFormDiv());
+formLink.addEventListener("click", () => showFormSection());
 
 // Action on the press summary-link
-summaryLink.addEventListener("click", () => showSummaryDiv());
+summaryLink.addEventListener("click", () => showSummarySection());

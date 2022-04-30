@@ -24,5 +24,5 @@ const displayFormWithCar = (carItem) => {
   addAccessoryLists(carAccessories, [], fieldForFeaturesForAdd, fieldForFeaturesAdded);
 
   // Acctive form in navigation and form field;
-  showFormDiv();
+  showFormSection();
 };

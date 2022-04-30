@@ -11,6 +11,6 @@ const displaySummary = (finalCar, financing, delivery, finalPrice) => {
 	finalCarPrice.innerText = `${finalPrice} zł`;
 
 	// Acctive summary button
-	showSummaryDiv();
+	showSummarySection();
 	window.localStorage.clear();
 }

@@ -3,11 +3,12 @@ const buyCarLink = document.getElementById("buy-car");
 const formLink = document.getElementById("form");
 const summaryLink = document.getElementById("summary-in-nav");
 
-// Main dives
-const carListDiv = document.getElementById("car-list");
-const formDiv = document.getElementById("form-id");
-const alertDiv = document.getElementById("alert");
-const summaryDiv = document.getElementById("summary");
+// Main sections
+const carListSection = document.getElementById("car-list");
+const formSection = document.getElementById("form-id");
+const alertSection = document.getElementById("alert");
+const summarySection = document.getElementById("summary");
+const carouselSection = document.getElementById("carousel");
 
 // Fields for fill in form
 // coresponding to car

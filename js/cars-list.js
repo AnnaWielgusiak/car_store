@@ -36,7 +36,7 @@ const fillCarList = (() => {
     return div;
   };
 
-  // Changing main div for pairs of dives
+  // Changing main div for pairs of divs
   const toPairs = (result, value, index, array) => {
     if (index % 2 === 0) {
       result.push(array.slice(index, index + 2));
@@ -55,25 +55,21 @@ const fillCarList = (() => {
         carPair.forEach((car) => div.appendChild(car));
         return div;
       })
-      .forEach((div) => carListDiv.appendChild(div));
+      .forEach((div) => carListSection.appendChild(div));
   };
 
   window.onload = () => {
     window.localStorage.removeItem("searchBrand");
     window.localStorage.removeItem("searchModel");
     window.localStorage.removeItem("searchYear");
-    window.localStorage.setItem("searchPrice", JSON.stringify('5000'));
+    window.localStorage.setItem("searchPrice", JSON.stringify(String(getMaxPrice(CARS)+1)));
     const dataFromLocalStorage = getDataFromLocalStorage();
     storageCar = dataFromLocalStorage.car;
     carAccessories = dataFromLocalStorage.car.accessories;
     possibleAccessories = dataFromLocalStorage.possibleAccessories;
     chosenAccessories = dataFromLocalStorage.chosenAccessories;
-    storageOwner = dataFromLocalStorage.owner;
-    if (storageOwner !== null) {
-      storageOwner = dataFromLocalStorage.owner;
-    } else {
-      storageOwner = "";
-    };
+
+    storageOwner = storageOwner ? dataFromLocalStorage.owner : "";
 
     storageFinancing = dataFromLocalStorage.financing;
     storageDelivery = dataFromLocalStorage.delivery;

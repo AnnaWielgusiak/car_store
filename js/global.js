@@ -1,3 +1,10 @@
+// Getting max value of price - to filter at start
+const getMaxPrice = (carsList) => {
+	let arrayOfPrices = [];
+	carsList.forEach(car => arrayOfPrices.push(car.price));
+	return Math.max(...arrayOfPrices);
+};
+
 // Car description
 const carDescriptionFun = (car) => {
 	return {
@@ -120,11 +127,11 @@ const getAndCheckOwnerData = () => {
 	let ownerDataForSummary;
 
 	if (ownerName.length = 0 || printAlert === false) {
-		show(alertDiv);
-		alertDiv.scrollIntoView();
+		show(alertSection);
+		alertSection.scrollIntoView();
 		ownerDataForSummary = null;
 	} else {
-		hide(alertDiv);
+		hide(alertSection);
 		ownerDataForSummary = ownerName;
 	};
 
@@ -143,40 +150,19 @@ const changeCheck = (checkedMoney, checkedLeasing) => {
 };
 
 // Check choosing financing
-const checkChoosinfFinancing = () => {
-	let finance;
-	if (checkedMoney.checked === true) {
-		finance = "gotówka";
-	} else if (checkedLeasing.checked === true) {
-		finance = "leasing";
-	};
-	return finance;
-};
+const checkChoosinfFinancing = () => checkMoney.checked ? "gotówka" : "leasing";
 
 //Changing financing
-checkedMoney.addEventListener("click", () => {
-	changeCheck(checkedMoney, checkedLeasing);
-});
-checkedLeasing.addEventListener("click", () => {
-	changeCheck(checkedLeasing, checkedMoney);
-});
+checkedMoney.addEventListener("click", () => changeCheck(checkedMoney, checkedLeasing));
+checkedLeasing.addEventListener("click", () => changeCheck(checkedLeasing, checkedMoney));
 
 // Creating delivery data
-const changeValueToString = (value) => {
-	let valueString;
-	if (value < 10) {
-		valueString = String(`0${value}`);
-	} else {
-		valueString = String(value);
-	};
-	return valueString;
-};
+const changeValueToString = (value) => value < 10 ? String(`0${value}`) : String(value);
 
 const deliveryData = () => {
 	let today = new Date();
 	let twoWeeks = new Date();
 	twoWeeks.setDate(today.getDate() + 14);
-
 	return `${String(twoWeeks.getFullYear())}-${changeValueToString(twoWeeks.getMonth()+1)}-${changeValueToString(twoWeeks.getDate())}`;
 };
 
@@ -188,8 +174,8 @@ deliveryField.max = deliveryData();
 // Getting owner data and display summary
 buyButton.addEventListener("click", () => {
 	if (!getAndCheckOwnerData()) {
-		showAlertDiv();
-		hide(summaryDiv);
+		showAlertSection();
+		hide(summarySection);
 	} else {
 		displaySummary(storageCar, checkChoosinfFinancing(), deliveryData(), gettingAcctualPrice(carPriceChosen));
 		window.localStorage.clear();

@@ -199,6 +199,10 @@ form div {
     padding: 0;
 }
 
+.car-box:hover {
+    cursor: pointer;
+}
+
 .car-image-div {
     padding: 0;
 }

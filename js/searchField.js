@@ -43,11 +43,7 @@ const filterByYear = (searchYear) => {
 	if (!searchYear) {
 		return car => true;
 	}
-	if (searchYear === "starsze") {
-		return car => car.year < 1999;
-	} else {
-		return car => car.year >= searchYear;
-	}
+	return searchYear === "starsze" ? car => car.year < 1999 : car => car.year >= searchYear;
 };
 
 // File price list
@@ -70,11 +66,9 @@ const filterByPrice = (searchPrice) => {
 	if (!searchPrice) {
 		return car => true;
 	}
-	if (searchPrice === "droższe") {
-		return car => car.price > 70000;
-	} else {
-		return car => car.price < searchPrice;
-	}
+	return searchPrice === "droższe" ?
+		car => car.price > 70000 :
+		car => car.price < searchPrice;
 };
 
 // Getting value of searched brand
@@ -133,7 +127,7 @@ searchButton.addEventListener("click", () => {
 	let searchYear = JSON.parse(window.localStorage.getItem("searchYear"));
 	let searchPrice = JSON.parse(window.localStorage.getItem("searchPrice"));
 
-	carListDiv.innerHTML = "";
+	carListSection.innerHTML = "";
 
 	const carsToDisplay = getCarsToDisplay(
 		car => !searchBrand || car.brand === searchBrand,
