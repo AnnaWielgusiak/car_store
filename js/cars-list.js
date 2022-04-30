@@ -69,7 +69,7 @@ const fillCarList = (() => {
     possibleAccessories = dataFromLocalStorage.possibleAccessories;
     chosenAccessories = dataFromLocalStorage.chosenAccessories;
 
-    storageOwner = storageOwner ? dataFromLocalStorage.owner : "";
+    storageOwner = dataFromLocalStorage.owner || "";
 
     storageFinancing = dataFromLocalStorage.financing;
     storageDelivery = dataFromLocalStorage.delivery;

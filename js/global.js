@@ -84,42 +84,9 @@ deleteButton.addEventListener("click", () => addRemoveBeetwenList(fieldForFeatur
 const getData = (nameField) => (nameField).value.trim();
 
 // Check signs - unicode
-const printUnicodNumbersSignsToDel = () => {
-	let arrayOfSigns = [];
-	for (let i = 91; i < 97; i++) {
-		const unicodeNumberSignsToDel = String.fromCharCode(i);
-		arrayOfSigns.push(unicodeNumberSignsToDel);
-	};
-	return arrayOfSigns;
-};
+const firstNameLastNameRegex = /[A-ZŻŹĆĄŚĘŁÓŃ]{1}[a-zżźćńółęąś]+ [A-ZŻŹĆĄŚĘŁÓŃ]{1}[a-zżźćńółęąś]+/;
 
-const letters = () => {
-	const arrayOfPolishLetters = [" ", "Ą", "ą", "Ć", "ć", "Ę", "ę", "Ł", "ł", "Ń", "ń", "Ó", "ó", "Ś", "ś", "Ż", "ż", "Ź", "ź"];
-	let arrayOfLetters = arrayOfPolishLetters;
-	signsToDell = printUnicodNumbersSignsToDel();
-	for (let i = 65; i < 123; i++) {
-		const letter = String.fromCharCode(i);
-		if (signsToDell.indexOf(letter) < 0) {
-			arrayOfLetters.push(letter);
-		};
-	};
-	return arrayOfLetters;
-};
-
-const checkNameSigns = (gettingName) => {
-	let signs = letters();
-
-	// Check if name is inncorect - sign
-	return gettingName.split('').filter(name => !signs.includes(name));
-};
-
-const checkNameSpaces = (gettingName) => gettingName.split('').filter(sign => sign === " ");
-
-const checkName = (gettingName) => {
-	let signsInName = checkNameSigns(gettingName);
-	let spacesInName = checkNameSpaces(gettingName);
-	return !(signsInName.length > 0 || spacesInName.length > 1);
-};
+const checkName = (gettingName) => firstNameLastNameRegex.test(gettingName);
 
 const getAndCheckOwnerData = () => {
 	let ownerName = getData(nameField);
@@ -150,7 +117,7 @@ const changeCheck = (checkedMoney, checkedLeasing) => {
 };
 
 // Check choosing financing
-const checkChoosinfFinancing = () => checkMoney.checked ? "gotówka" : "leasing";
+const checkChoosinfFinancing = () => checkedMoney.checked ? "gotówka" : "leasing";
 
 //Changing financing
 checkedMoney.addEventListener("click", () => changeCheck(checkedMoney, checkedLeasing));
