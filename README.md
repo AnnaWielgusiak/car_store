@@ -75,7 +75,7 @@ Car pictures:
 * https://cdn.pixabay.com/photo/2019/07/12/12/37/skoda-4332791_960_720.jpg.
 
 Carousel inspirated by:
-* https://bootsnipp.com/snippets/dl6ez
+* https://www.codeply.com/p/0CWffz76Q9
 
 Brand logos are used only for learning purpose - non commercial use
 
